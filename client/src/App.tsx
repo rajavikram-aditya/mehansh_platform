@@ -6,6 +6,9 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
+// Design reminder: Dopamine Hospitality Club — retain the navy-and-cream editorial frame
+// with restrained teal and acid-signal accents across all routes.
+
 
 function Router() {
   return (
