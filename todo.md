@@ -23,3 +23,8 @@
 - [x] Align the Under Our Wing rail with the content system rather than the heading text.
 - [x] Tune service-card color contrast and normalize the card content baseline.
 - [x] Confirm desktop and mobile section alignment after the refinement.
+
+## Ber Anjuna Image
+
+- [x] Add the user-provided Ber Anjuna restaurant photograph to its portfolio card.
+- [x] Verify the image crop, overlay, and text contrast on the completed card.

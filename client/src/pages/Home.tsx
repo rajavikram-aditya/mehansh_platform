@@ -80,6 +80,7 @@ const portfolioItems = [
     eyebrow: "Restaurant operations",
     title: <>Ber Anjuna,<br />Goa</>,
     description: "An existing restaurant brought under the Mehansh management wing.",
+    image: "/manus-storage/ber-anjuna-restaurant_36fad056.png",
     draft: "[REPLACE: confirm takeover scope and approved assets.]",
   },
   {
