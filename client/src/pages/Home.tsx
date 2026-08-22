@@ -47,7 +47,7 @@ const servicePillars = [
     title: "Rahgir by\nMehansh Platform",
     copy: "Educational and industrial trips, made calm from first route plan to final headcount, for colleges that need a single accountable partner.",
     proof: "Trip logistics, end to end",
-    color: "bg-cream text-navy border border-navy/30",
+    color: "bg-cream text-navy border border-navy/30 border-t-[6px] border-t-teal",
     accent: "bg-signal text-navy",
     icon: Route,
   },
@@ -56,7 +56,7 @@ const servicePillars = [
     title: "Beyond Silli\nChilli",
     copy: "A further managed property in development. The next operating story is being shaped with the same practical hospitality lens.",
     proof: "[REPLACE: confirm property details]",
-    color: "bg-cream text-navy border border-navy/30",
+    color: "bg-cream text-navy border border-navy/30 border-t-[6px] border-t-purple",
     accent: "bg-purple text-cream",
     icon: ClipboardCheck,
   },
@@ -256,8 +256,8 @@ export default function Home() {
         </section>
 
         <section id="wing" className="relative overflow-hidden bg-cream py-24 lg:py-32">
-          <div className="absolute bottom-0 left-[7%] top-0 hidden w-1 bg-teal lg:block" />
-          <div className="absolute left-[calc(7%-6px)] top-20 hidden h-3 w-3 rotate-45 bg-signal lg:block" />
+          <div className="pointer-events-none absolute bottom-0 left-5 top-0 z-0 hidden w-1 bg-teal lg:block" />
+          <div className="pointer-events-none absolute left-4 top-20 z-0 hidden h-3 w-3 rotate-45 bg-signal lg:block" />
           <div className="noise-layer absolute inset-0 opacity-[0.05]" />
           <ScrollStage className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12" drift={52}>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={reveal} className="flex flex-col justify-between gap-7 border-b border-navy/25 pb-10 md:flex-row md:items-end">

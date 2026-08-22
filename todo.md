@@ -17,3 +17,9 @@
 - [x] Keep hero copy fully legible throughout its scroll-driven movement.
 - [x] Reinforce supporting-copy contrast without removing the hero animation.
 - [x] Verify the corrected hero on desktop and mobile.
+
+## Section Color and Alignment
+
+- [x] Align the Under Our Wing rail with the content system rather than the heading text.
+- [x] Tune service-card color contrast and normalize the card content baseline.
+- [x] Confirm desktop and mobile section alignment after the refinement.
