@@ -33,3 +33,9 @@
 
 - [x] Remove the artificial blank gap above the Under Our Wing heading.
 - [x] Preserve the section transition and verify the corrected scroll position.
+
+## Service Card Color Treatment
+
+- [x] Give the Rahgir card a full teal brand treatment with readable navy content.
+- [x] Give the Beyond Silli Chilli card a full purple brand treatment with readable cream content.
+- [x] Verify the color-balanced service grid on desktop and mobile.
