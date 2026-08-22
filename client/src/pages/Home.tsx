@@ -141,8 +141,7 @@ export default function Home() {
   const heroOffset = useTransform(scrollYProgress, [0, 0.2], [0, 80]);
   const heroImageY = useTransform(scrollYProgress, [0, 0.16], [0, 92]);
   const heroImageScale = useTransform(scrollYProgress, [0, 0.16], [1, 1.08]);
-  const heroContentY = useTransform(scrollYProgress, [0, 0.16], [0, -118]);
-  const heroContentOpacity = useTransform(scrollYProgress, [0, 0.13, 0.2], [1, 0.82, 0]);
+  const heroContentY = useTransform(scrollYProgress, [0, 0.16], [0, -42]);
 
   const closeMenu = () => setMenuOpen(false);
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -186,14 +185,14 @@ export default function Home() {
 
       <main>
         <section className="relative min-h-[680px] overflow-hidden bg-navy pt-28 sm:min-h-[760px] md:min-h-[820px]">
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(31,58,82,0.96)_0%,rgba(31,58,82,0.83)_44%,rgba(31,58,82,0.32)_75%,rgba(31,58,82,0.1)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,29,43,0.99)_0%,rgba(31,58,82,0.96)_45%,rgba(31,58,82,0.52)_72%,rgba(31,58,82,0.18)_100%)]" />
           <motion.div className="absolute -inset-y-24 inset-x-0 bg-cover bg-center opacity-85" style={{ backgroundImage: "url('/manus-storage/mehansh-hero_0f1c8e24.jpg')", y: heroImageY, scale: heroImageScale, willChange: "transform" }} />
           <div className="noise-layer absolute inset-0 opacity-30 mix-blend-soft-light" />
           <motion.div style={{ y: heroOffset }} className="absolute -right-28 top-40 h-72 w-72 rounded-full border border-signal/70 sm:-right-20 sm:h-[34rem] sm:w-[34rem]" />
           <div className="absolute -right-7 top-[25rem] h-5 w-5 rotate-45 bg-teal shadow-[0_0_0_12px_rgba(15,191,199,0.12)]" />
           <div className="absolute bottom-0 right-[13%] h-32 w-1 bg-signal/80" />
 
-          <motion.div style={{ y: heroContentY, opacity: heroContentOpacity, willChange: "transform, opacity" }} className="relative mx-auto flex min-h-[570px] max-w-[1440px] flex-col justify-end px-5 pb-14 sm:min-h-[650px] sm:px-8 md:min-h-[710px] md:pb-20 lg:px-12">
+          <motion.div style={{ y: heroContentY, willChange: "transform" }} className="relative mx-auto flex min-h-[570px] max-w-[1440px] flex-col justify-end px-5 pb-14 sm:min-h-[650px] sm:px-8 md:min-h-[710px] md:pb-20 lg:px-12">
             <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.07 } } }} className="max-w-4xl">
               <motion.div variants={reveal}><Eyebrow light>Hospitality operations, Pune / Goa / beyond</Eyebrow></motion.div>
               <motion.h1 variants={reveal} className="mt-8 font-display text-[clamp(3.45rem,16vw,9.3rem)] font-semibold leading-[0.76] tracking-[-0.055em] text-cream">
@@ -201,7 +200,7 @@ export default function Home() {
               </motion.h1>
               <motion.div variants={reveal} className="hero-rule mt-9 h-px w-full max-w-2xl bg-cream/40" />
               <motion.div variants={reveal} className="mt-6 flex max-w-xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-                <p className="max-w-sm text-sm leading-6 text-cream/85 sm:text-base">We take the daily complexity out of hospitality—so a property, institution, or trip can work with purposeful calm.</p>
+                <p className="max-w-sm border-l-2 border-teal bg-navy/85 px-4 py-3 text-sm leading-6 text-cream shadow-[8px_8px_0_rgba(15,191,199,0.16)] backdrop-blur-[2px] sm:text-base">We take the daily complexity out of hospitality—so a property, institution, or trip can work with purposeful calm.</p>
                 <a href="#services" className="group flex w-fit items-center gap-3 border-b border-signal pb-2 text-[11px] font-bold uppercase tracking-[0.15em] text-signal">
                   Meet the platform <ArrowDownRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-1" />
                 </a>

@@ -11,3 +11,9 @@
 - [x] Anchor every location tag inside its own card and apply small corner number tags uniformly.
 - [x] Restyle unconfirmed content notes as low-emphasis draft markers instead of live-status badges.
 - [x] Verify the refined portfolio grid on desktop and mobile.
+
+## Hero Readability
+
+- [x] Keep hero copy fully legible throughout its scroll-driven movement.
+- [x] Reinforce supporting-copy contrast without removing the hero animation.
+- [x] Verify the corrected hero on desktop and mobile.
