@@ -28,3 +28,8 @@
 
 - [x] Add the user-provided Ber Anjuna restaurant photograph to its portfolio card.
 - [x] Verify the image crop, overlay, and text contrast on the completed card.
+
+## Under Our Wing Spacing
+
+- [x] Remove the artificial blank gap above the Under Our Wing heading.
+- [x] Preserve the section transition and verify the corrected scroll position.

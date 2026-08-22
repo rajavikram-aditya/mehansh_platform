@@ -214,7 +214,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section id="services" className="relative overflow-hidden bg-cream px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <section id="services" className="relative overflow-hidden bg-cream px-5 pb-10 pt-24 sm:px-8 lg:px-12 lg:pb-12 lg:pt-32">
           <div className="absolute bottom-0 left-[7%] top-0 hidden w-px bg-navy/15 lg:block" />
           <div className="absolute left-[calc(7%-4px)] top-28 hidden h-2 w-2 rotate-45 bg-signal lg:block" />
           <div className="absolute right-[6%] top-12 font-display text-[210px] font-semibold leading-none text-navy/[0.045]">01</div>
@@ -256,11 +256,11 @@ export default function Home() {
           </ScrollStage>
         </section>
 
-        <section id="wing" className="relative overflow-hidden bg-cream py-24 lg:py-32">
+        <section id="wing" className="relative overflow-hidden bg-cream pb-24 pt-12 lg:pb-32 lg:pt-16">
           <div className="pointer-events-none absolute bottom-0 left-5 top-0 z-0 hidden w-1 bg-teal lg:block" />
           <div className="pointer-events-none absolute left-4 top-20 z-0 hidden h-3 w-3 rotate-45 bg-signal lg:block" />
           <div className="noise-layer absolute inset-0 opacity-[0.05]" />
-          <ScrollStage className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12" drift={52}>
+          <ScrollStage className="relative mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12" drift={16}>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={reveal} className="flex flex-col justify-between gap-7 border-b border-navy/25 pb-10 md:flex-row md:items-end">
               <div>
                 <Eyebrow>Under our wing</Eyebrow>
