@@ -39,3 +39,8 @@
 - [x] Give the Rahgir card a full teal brand treatment with readable navy content.
 - [x] Give the Beyond Silli Chilli card a full purple brand treatment with readable cream content.
 - [x] Verify the color-balanced service grid on desktop and mobile.
+
+## Mobile What We Do Index
+
+- [x] Keep the decorative What We Do index from overlapping the mobile heading.
+- [x] Verify the corrected heading at mobile and desktop sizes.

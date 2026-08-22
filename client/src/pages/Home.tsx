@@ -217,7 +217,7 @@ export default function Home() {
         <section id="services" className="relative overflow-hidden bg-cream px-5 pb-10 pt-24 sm:px-8 lg:px-12 lg:pb-12 lg:pt-32">
           <div className="absolute bottom-0 left-[7%] top-0 hidden w-px bg-navy/15 lg:block" />
           <div className="absolute left-[calc(7%-4px)] top-28 hidden h-2 w-2 rotate-45 bg-signal lg:block" />
-          <div className="absolute right-[6%] top-12 font-display text-[210px] font-semibold leading-none text-navy/[0.045]">01</div>
+          <div className="absolute right-[6%] top-12 hidden font-display text-[210px] font-semibold leading-none text-navy/[0.045] lg:block">01</div>
           <ScrollStage className="mx-auto max-w-[1344px]" drift={46}>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={reveal} className="grid items-end gap-8 lg:grid-cols-[1.15fr_.85fr]">
               <div>
