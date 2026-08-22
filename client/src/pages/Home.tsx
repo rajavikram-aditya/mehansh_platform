@@ -307,7 +307,7 @@ export default function Home() {
           <ScrollStage className="relative mx-auto grid max-w-[1344px] gap-14 lg:grid-cols-[.8fr_1.2fr] lg:items-center" drift={44}>
             <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.65 }} className="relative mx-auto w-full max-w-[410px] lg:mx-0">
               <div className="absolute -left-5 -top-5 h-full w-full border border-signal/60" />
-              <div className="relative aspect-[3/4] overflow-hidden bg-teal"><img src="/manus-storage/mehansh-founder_49649d23.jpg" alt="Saurabh Anand, founder of Mehansh Platform" className="h-full w-full object-cover" /><div className="absolute right-4 top-4 bg-cream p-1"><img src={crest} alt="Mehansh Platform crest" className="h-12 w-12" /></div></div>
+              <div className="relative aspect-[3/4] overflow-hidden bg-teal"><img src="/manus-storage/mehansh-founder-portrait_f8964a65.jpeg" alt="Saurabh Anand, founder of Mehansh Platform" className="h-full w-full object-cover object-[center_20%]" /><div className="absolute right-4 top-4 bg-cream p-1"><img src={crest} alt="Mehansh Platform crest" className="h-12 w-12" /></div></div>
               <div className="absolute -bottom-5 -right-5 bg-signal px-5 py-4 text-navy"><p className="font-display text-4xl font-semibold leading-none">25+</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[0.15em]">Years in hospitality</p></div>
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={{ visible: { transition: { staggerChildren: 0.09 } } }}>

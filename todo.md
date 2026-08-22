@@ -50,3 +50,8 @@
 - [x] Replace the partial menu dropdown with a full-screen mobile navigation layer.
 - [x] Add a clear menu label, close control, numbered link hierarchy, and action area.
 - [x] Verify the open and closed mobile navigation states.
+
+## Founder Portrait
+
+- [x] Add the user-provided founder portrait to the founder section.
+- [x] Verify its crop and visual balance against the founder credentials.
