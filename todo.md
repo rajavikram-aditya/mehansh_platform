@@ -55,3 +55,8 @@
 
 - [x] Add the user-provided founder portrait to the founder section.
 - [x] Verify its crop and visual balance against the founder credentials.
+
+## GitHub Image Source Audit
+
+- [x] Audit the image paths used by the website and the tracked repository contents.
+- [x] Document the image-source arrangement in the repository without breaking the live site.
