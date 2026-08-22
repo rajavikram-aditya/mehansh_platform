@@ -62,6 +62,46 @@ const servicePillars = [
   },
 ];
 
+const portfolioItems = [
+  {
+    number: "01",
+    badge: "Active operations",
+    location: "PUNE / 01",
+    eyebrow: "Institutional catering",
+    title: <>V.I.I.T. Pune<br />Cafeteria</>,
+    description: "Institutional dining managed with a steady service rhythm and accountable daily operations.",
+    image: "/manus-storage/mehansh-catering_35fb5a72.jpg",
+    draft: "[REPLACE: confirm scope, logo and approved property imagery.]",
+  },
+  {
+    number: "02",
+    badge: "Management takeover",
+    location: "GOA / 02",
+    eyebrow: "Restaurant operations",
+    title: <>Ber Anjuna,<br />Goa</>,
+    description: "An existing restaurant brought under the Mehansh management wing.",
+    draft: "[REPLACE: confirm takeover scope and approved assets.]",
+  },
+  {
+    number: "03",
+    badge: "Trip operations",
+    location: "RAHGIR / 03",
+    eyebrow: "Student logistics",
+    title: <>Rahgir by<br />Mehansh Platform</>,
+    description: "Approved planning, travel coordination and hospitality accountability in one working route.",
+    image: "/manus-storage/mehansh-rahgir_6e355fe7.jpg",
+  },
+  {
+    number: "04",
+    badge: "Property in development",
+    location: "TBD / 04",
+    eyebrow: "Managed property",
+    title: <>Beyond Silli<br />Chilli</>,
+    description: "A further managed property in development, shaped through the same practical operating lens.",
+    draft: "[REPLACE: confirm property details and approved imagery.]",
+  },
+];
+
 function Crest({ inverted = false }: { inverted?: boolean }) {
   return (
     <div className="flex items-center gap-3" aria-label="Mehansh Platform">
@@ -202,7 +242,7 @@ export default function Home() {
                         <p className="max-w-sm text-sm leading-5 opacity-85">{service.copy}</p>
                         <ArrowUpRight className="h-5 w-5 shrink-0" />
                       </div>
-                      <p className={`mt-5 w-fit px-2 py-1 text-[9px] font-bold uppercase tracking-[0.13em] ${service.accent}`}>{service.proof}</p>
+                      <p className={`mt-5 w-fit px-2 py-1 text-[9px] font-bold uppercase tracking-[0.13em] ${service.proof.includes("[REPLACE:") ? "draft-marker draft-marker--on-light" : service.accent}`}>{service.proof.includes("[REPLACE:") ? `DRAFT · ${service.proof}` : service.proof}</p>
                     </div>
                     <span className="absolute -bottom-12 -right-3 font-display text-[200px] font-semibold leading-none opacity-[0.09]">{service.number}</span>
                   </motion.article>
@@ -229,30 +269,16 @@ export default function Home() {
               <p className="max-w-sm text-sm leading-6 text-navy/75">A short record of work in action. Specific logos, details and imagery are intentionally marked where client approval is still pending.</p>
             </motion.div>
             <div className="mt-10 grid gap-px bg-navy/25 md:grid-cols-2">
-              <motion.article initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }} className="group relative min-h-[430px] overflow-hidden bg-navy p-7 text-cream sm:p-10">
-                <img src="/manus-storage/mehansh-catering_35fb5a72.jpg" alt="Institutional cafeteria service" className="absolute inset-0 h-full w-full object-cover opacity-40 transition duration-500 group-hover:scale-105 group-hover:opacity-55" />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,58,82,.2),rgba(31,58,82,.9))]" />
-                <div className="relative flex h-full flex-col justify-between">
-                  <div className="flex items-center justify-between"><span className="bg-signal px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-navy">Active operations</span><span className="font-body text-[10px] font-bold tracking-[0.16em] text-signal">PUNE / 01</span></div>
-                  <div><p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-signal">Institutional catering</p><h3 className="mt-3 font-display text-5xl font-semibold leading-[0.88] tracking-[-0.04em]">V.I.I.T. Pune<br />Cafeteria</h3><p className="mt-5 text-sm leading-6 text-cream/80">[REPLACE: confirm scope, logo and approved property imagery.]</p></div>
-                </div>
-              </motion.article>
-              <motion.article initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: 0.08 }} className="relative min-h-[430px] bg-cream p-7 text-navy sm:p-10">
-                <div className="absolute right-0 top-0 h-20 w-20 bg-purple" />
-                <div className="relative flex h-full flex-col justify-between">
-                  <div className="flex items-center justify-between"><span className="bg-purple px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-cream">Management takeover</span><span className="font-body text-[10px] font-bold tracking-[0.16em] text-purple">GOA / 02</span></div>
-                  <div><p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-purple">Restaurant operations</p><h3 className="mt-3 font-display text-5xl font-semibold leading-[0.88] tracking-[-0.04em]">Ber Anjuna,<br />Goa</h3><p className="mt-5 max-w-sm text-sm leading-6 text-navy/70">An existing restaurant brought under the Mehansh management wing. [REPLACE: confirm takeover scope and approved assets.]</p><a href="#contact" className="mt-7 inline-flex items-center gap-2 border-b border-navy pb-1 text-[10px] font-bold uppercase tracking-[0.14em]">Discuss your property <ArrowUpRight className="h-3.5 w-3.5" /></a></div>
-                </div>
-              </motion.article>
-            </div>
-            <div className="mt-px grid overflow-hidden bg-navy md:grid-cols-[.72fr_1.28fr]">
-              <div className="relative min-h-[260px] p-7 text-cream sm:p-10">
-                <img src={crest} alt="Mehansh crest" className="absolute right-7 top-7 h-14 w-14 bg-cream p-1" />
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-signal">03 / Operating board</p>
-                <h3 className="mt-5 max-w-sm font-display text-4xl font-semibold leading-[0.9] tracking-[-0.04em]">Trip logistics that leave nothing to chance.</h3>
-                <div className="mt-7 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.13em] text-cream/65"><span>Route</span><span className="h-px w-10 bg-teal" /><span>Roster</span><span className="h-px w-10 bg-teal" /><span>Return</span></div>
-              </div>
-              <div className="group relative min-h-[260px] overflow-hidden"><img src="/manus-storage/mehansh-rahgir_6e355fe7.jpg" alt="Rahgir college trip coordination" className="absolute inset-0 h-full w-full object-cover opacity-80 transition duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(31,58,82,.62),rgba(31,58,82,.08))]" /><div className="relative flex h-full items-end p-7 sm:p-10"><p className="max-w-sm text-sm leading-6 text-cream">Rahgir by Mehansh Platform brings approved planning, travel coordination and hospitality accountability into a single working route.</p></div></div>
+              {portfolioItems.map((item, index) => (
+                <motion.article key={item.number} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.55, delay: index * 0.06 }} className="portfolio-card group relative min-h-[380px] overflow-hidden bg-navy p-7 text-cream sm:min-h-[430px] sm:p-10">
+                  {item.image ? <img src={item.image} alt={`${item.eyebrow} at Mehansh Platform`} className="absolute inset-0 h-full w-full object-cover opacity-45 transition duration-500 group-hover:scale-105 group-hover:opacity-60" /> : <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(15,191,199,.72),transparent_32%),linear-gradient(145deg,#1F3A52_20%,#0b5d69_58%,#1F3A52_100%)]" />}
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(31,58,82,.22),rgba(31,58,82,.94))]" />
+                  <div className="relative flex h-full flex-col justify-between">
+                    <div className="flex items-start justify-between gap-5"><span className="bg-signal px-2 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-navy">{item.badge}</span><span className="border border-cream/45 px-2 py-1 font-body text-[10px] font-bold tracking-[0.16em] text-signal">{item.location}</span></div>
+                    <div><p className="font-body text-[11px] font-bold uppercase tracking-[0.18em] text-signal">{item.eyebrow}</p><h3 className="mt-3 font-display text-5xl font-semibold leading-[0.88] tracking-[-0.04em]">{item.title}</h3><p className="mt-5 max-w-md text-sm leading-6 text-cream/85">{item.description}</p>{item.draft && <span className="draft-marker mt-5">DRAFT · {item.draft}</span>}</div>
+                  </div>
+                </motion.article>
+              ))}
             </div>
           </ScrollStage>
         </section>
@@ -285,7 +311,7 @@ export default function Home() {
               <Eyebrow>Open a new chapter</Eyebrow>
               <h2 className="mt-6 font-display text-5xl font-semibold leading-[0.88] tracking-[-0.045em] sm:text-6xl">Looking to hand over your operations?</h2>
               <p className="mt-7 max-w-md text-base leading-7 text-navy/75">Tell us what needs to move: a canteen, a restaurant, a property, or a college trip. We’ll start with the operational picture.</p>
-              <div className="mt-10 border-l-2 border-purple pl-5"><p className="text-[10px] font-bold uppercase tracking-[0.18em] text-purple">Based in</p><p className="mt-2 font-display text-2xl font-semibold">Pune, Maharashtra</p><p className="mt-2 text-sm text-navy/65">[REPLACE: official phone, email and office address.]</p></div>
+              <div className="mt-10 border-l-2 border-purple pl-5"><p className="text-[10px] font-bold uppercase tracking-[0.18em] text-purple">Based in</p><p className="mt-2 font-display text-2xl font-semibold">Pune, Maharashtra</p><p className="mt-3"><span className="draft-marker draft-marker--on-light">DRAFT · [REPLACE: official phone, email and office address.]</span></p></div>
             </motion.div>
             <motion.form initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.55 }} onSubmit={handleSubmit} className="relative bg-navy p-7 text-cream shadow-[14px_14px_0_#D6FF3B] sm:p-10">
               <div className="flex items-start justify-between"><p className="font-body text-[10px] font-bold uppercase tracking-[0.2em] text-signal">Inquiry desk</p><img src={crest} alt="Mehansh Platform crest" className="h-12 w-12 bg-cream p-1" /></div>
@@ -296,7 +322,7 @@ export default function Home() {
                 <label className="block sm:col-span-2"><span className="text-[10px] font-bold uppercase tracking-[0.16em] text-cream/65">What are you looking to hand over?</span><textarea required name="message" rows={3} placeholder="A short outline is enough." className="mt-2 w-full resize-none border-b border-cream/30 bg-transparent pb-3 text-base outline-none placeholder:text-cream/35 focus:border-signal" /></label>
               </div>
               <button className="mt-8 inline-flex items-center gap-3 bg-signal px-5 py-4 text-[10px] font-bold uppercase tracking-[0.16em] text-navy transition hover:bg-teal active:scale-[0.97]">Send the brief <Send className="h-4 w-4" /></button>
-              <p className="mt-5 text-[10px] leading-4 text-cream/45">Demo form only. [REPLACE: connect to your preferred email or CRM destination.]</p>
+              <p className="mt-5"><span className="draft-marker">DRAFT · [REPLACE: connect to your preferred email or CRM destination.]</span></p>
             </motion.form>
           </ScrollStage>
         </section>
