@@ -44,3 +44,9 @@
 
 - [x] Keep the decorative What We Do index from overlapping the mobile heading.
 - [x] Verify the corrected heading at mobile and desktop sizes.
+
+## Mobile Navigation Redesign
+
+- [x] Replace the partial menu dropdown with a full-screen mobile navigation layer.
+- [x] Add a clear menu label, close control, numbered link hierarchy, and action area.
+- [x] Verify the open and closed mobile navigation states.

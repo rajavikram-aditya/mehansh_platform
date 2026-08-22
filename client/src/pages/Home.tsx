@@ -13,7 +13,7 @@ import {
   UtensilsCrossed,
   X,
 } from "lucide-react";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const crest = "/manus-storage/mehansh-crest_199225de.png";
@@ -145,6 +145,11 @@ export default function Home() {
   const heroContentY = useTransform(scrollYProgress, [0, 0.16], [0, -42]);
 
   const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     toast("Demo inquiry received", {
@@ -168,19 +173,32 @@ export default function Home() {
           <a href="#contact" className="hidden bg-signal px-5 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-navy transition-transform duration-150 hover:bg-cream active:scale-[0.97] lg:block">
             Start a conversation <ArrowUpRight className="ml-1 inline h-3.5 w-3.5" />
           </a>
-          <button className="grid h-11 w-11 place-items-center border border-cream/30 text-cream lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          <button className="grid h-11 w-11 place-items-center border border-cream/30 bg-navy/40 text-cream backdrop-blur-sm transition hover:border-signal hover:text-signal active:scale-[0.97] lg:hidden" onClick={() => setMenuOpen(true)} aria-label="Open navigation" aria-expanded={menuOpen}>
+            <Menu size={20} />
           </button>
         </div>
         {menuOpen && (
-          <div className="border-t border-cream/20 bg-navy px-5 py-7 text-cream lg:hidden">
-            <nav className="flex flex-col gap-5 font-display text-3xl font-semibold">
-              <a onClick={closeMenu} href="#services">What we do</a>
-              <a onClick={closeMenu} href="#wing">Under our wing</a>
-              <a onClick={closeMenu} href="#founder">Founder</a>
-              <a onClick={closeMenu} href="#contact" className="text-signal">Start a conversation</a>
-            </nav>
-          </div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.22 }} className="fixed inset-0 z-[70] overflow-y-auto bg-navy text-cream lg:hidden">
+            <div className="noise-layer absolute inset-0 opacity-20 mix-blend-soft-light" />
+            <div className="absolute -right-16 top-24 h-72 w-72 rounded-full border border-teal/35" />
+            <div className="absolute bottom-[-5rem] left-[-6rem] font-display text-[20rem] font-semibold leading-none text-cream/[0.045]">M</div>
+            <div className="relative flex min-h-[100dvh] flex-col px-5 pb-7 pt-5">
+              <div className="flex items-center justify-between border-b border-cream/20 pb-5">
+                <Crest inverted />
+                <button onClick={closeMenu} className="flex h-12 items-center gap-2 border border-signal bg-navy px-3 text-[10px] font-bold uppercase tracking-[0.15em] text-signal transition hover:bg-signal hover:text-navy active:scale-[0.97]" aria-label="Close navigation"><X size={18} /><span>Close</span></button>
+              </div>
+              <div className="flex flex-1 flex-col pt-10">
+                <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-teal"><span className="h-2 w-2 rotate-45 bg-signal" />Navigate Mehansh</div>
+                <nav className="mt-6">
+                  {[{ label: "What we do", href: "#services", number: "01" }, { label: "Under our wing", href: "#wing", number: "02" }, { label: "Founder", href: "#founder", number: "03" }].map((item) => (
+                    <a key={item.href} onClick={closeMenu} href={item.href} className="group flex items-center justify-between border-b border-cream/20 py-5 font-display text-[clamp(2.45rem,11vw,3.5rem)] font-semibold leading-[0.86] tracking-[-0.035em] transition hover:pl-2 hover:text-signal"><span>{item.label}</span><span className="font-body text-[10px] font-bold tracking-[0.16em] text-teal transition group-hover:text-signal">{item.number}</span></a>
+                  ))}
+                </nav>
+                <a onClick={closeMenu} href="#contact" className="mt-auto flex items-center justify-between bg-signal px-5 py-5 font-display text-3xl font-semibold leading-none text-navy transition hover:bg-cream active:scale-[0.97]"><span>Start a conversation</span><ArrowUpRight className="h-6 w-6" /></a>
+                <div className="mt-6 flex items-center justify-between border-t border-cream/20 pt-5 text-[9px] font-bold uppercase tracking-[0.15em] text-cream/60"><span>Pune / Maharashtra</span><span className="text-signal">Est. 2026</span></div>
+              </div>
+            </div>
+          </motion.div>
         )}
       </header>
 
