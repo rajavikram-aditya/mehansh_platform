@@ -1,5 +1,5 @@
 // Design reminder: Dopamine Hospitality Club — editorial asymmetry, navy weight and purposeful signal-color moments.
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -16,7 +16,7 @@ import {
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-const crest = "/manus-storage/mehansh-crest_199225de.png";
+const crest = "/assets/MehnashPlatform.png";
 
 const reveal = {
   hidden: { opacity: 0, y: 28 },
@@ -70,7 +70,7 @@ const portfolioItems = [
     eyebrow: "Institutional catering",
     title: <>V.I.I.T. Pune<br />Cafeteria</>,
     description: "Institutional dining managed with a steady service rhythm and accountable daily operations.",
-    image: "/manus-storage/mehansh-catering_35fb5a72.jpg",
+    image: "/assets/mehansh-catering_35fb5a72.jpg",
     draft: "[REPLACE: confirm scope, logo and approved property imagery.]",
   },
   {
@@ -80,7 +80,7 @@ const portfolioItems = [
     eyebrow: "Restaurant operations",
     title: <>Ber Anjuna,<br />Goa</>,
     description: "An existing restaurant brought under the Mehansh management wing.",
-    image: "/manus-storage/ber-anjuna-restaurant_36fad056.png",
+    image: "/assets/Ber.png",
     draft: "[REPLACE: confirm takeover scope and approved assets.]",
   },
   {
@@ -90,7 +90,7 @@ const portfolioItems = [
     eyebrow: "Student logistics",
     title: <>Rahgir by<br />Mehansh Platform</>,
     description: "Approved planning, travel coordination and hospitality accountability in one working route.",
-    image: "/manus-storage/mehansh-rahgir_6e355fe7.jpg",
+    image: "/assets/Rahgir.png",
   },
   {
     number: "04",
@@ -135,14 +135,242 @@ function ScrollStage({ children, className = "", drift = 38 }: { children: React
   return <motion.div ref={stageRef} className={className} style={{ y, opacity, willChange: "transform, opacity" }}>{children}</motion.div>;
 }
 
+// ─── Hero animation helpers ──────────────────────────────────────────────────
+
+/** Split a sentence into words for staggered spring reveals. */
+function SplitHeadline({ text, reducedMotion }: { text: string; reducedMotion: boolean | null }) {
+  // Split on spaces but preserve line-break marker "\n"
+  const words = text.split(" ");
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: reducedMotion ? 0 : 0.055, delayChildren: reducedMotion ? 0 : 0.18 } },
+  };
+  const wordVariants = (isBold: boolean) => ({
+    hidden: reducedMotion
+      ? { opacity: 0 }
+      : { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1, y: 0,
+      transition: reducedMotion
+        ? { duration: 0.4 }
+        : { type: "spring" as const, stiffness: 100, damping: 20 },
+    },
+  });
+
+  return (
+    <motion.span
+      className="block"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {words.map((word, i) => {
+        const isBold = word.toLowerCase() === "managed";
+        return (
+          <motion.span
+            key={i}
+            className="inline-block mr-[0.22em]"
+            variants={wordVariants(isBold)}
+          >
+            {isBold ? (
+              <HeroManagedWord reducedMotion={reducedMotion} />
+            ) : (
+              <em className={`not-italic ${isBold ? "text-signal" : ""}`}>{word}</em>
+            )}
+          </motion.span>
+        );
+      })}
+    </motion.span>
+  );
+}
+
+/** "managed" gets acid color flash + scale bounce on entrance. */
+function HeroManagedWord({ reducedMotion }: { reducedMotion: boolean | null }) {
+  const [flashed, setFlashed] = useState(false);
+  return (
+    <motion.em
+      className="not-italic"
+      style={{ color: flashed ? "#D6FF3B" : "#D6FF3B", display: "inline-block" }}
+      initial={reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.6, y: 40 }}
+      animate={reducedMotion ? { opacity: 1 } : { opacity: 1, scale: [1, 1.18, 0.95, 1.06, 1], y: 0 }}
+      transition={reducedMotion ? { duration: 0.4 } : { type: "spring", stiffness: 320, damping: 10, delay: 0.72 }}
+      onAnimationComplete={() => setFlashed(true)}
+    >
+      managed
+    </motion.em>
+  );
+}
+
+
+/** Accent shapes (diamond, crosshair ring, vertical bar) spring-bounce in. */
+function HeroAccents({ reducedMotion }: { reducedMotion: boolean | null }) {
+  const spring = (delay: number) =>
+    reducedMotion
+      ? { duration: 0.4, delay }
+      : { type: "spring" as const, stiffness: 280, damping: 10, delay };
+  const hidden = reducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0, rotate: -45 };
+  const visible = { opacity: 1, scale: 1, rotate: 0 };
+
+  return (
+    <>
+      {/* Pulsing ring (large right) */}
+      <motion.div
+        className="absolute -right-10 top-20 h-[30rem] w-[30rem] rounded-full border border-cream/30 sm:-right-20 sm:top-10 sm:h-[45rem] sm:w-[45rem] pointer-events-none"
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={reducedMotion ? { duration: 0.5 } : { type: "spring", stiffness: 120, damping: 14, delay: 0.4 }}
+      />
+      {/* Acid vertical bar */}
+      <motion.div
+        className="absolute bottom-0 right-[13%] w-1 bg-signal/80"
+        initial={{ opacity: 0, scaleY: 0 }}
+        animate={{ opacity: 1, scaleY: 1 }}
+        style={{ height: "8rem", originY: 1 }}
+        transition={reducedMotion ? { duration: 0.4, delay: 0.5 } : { type: "spring", stiffness: 160, damping: 18, delay: 0.9 }}
+      />
+      {/* Acid small square */}
+      <motion.div
+        className="absolute left-[12%] bottom-[18%] h-3 w-3 rotate-45 bg-signal/60"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={spring(1.0)}
+      />
+    </>
+  );
+}
+
+/** Magnetic CTA — shifts slightly toward cursor, pulsing acid glow ring. */
+function MagneticCTA({ reducedMotion }: { reducedMotion: boolean | null }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (reducedMotion || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    x.set((e.clientX - cx) * 0.28);
+    y.set((e.clientY - cy) * 0.28);
+  };
+  const handleMouseLeave = () => { x.set(0); y.set(0); };
+
+  return (
+    <motion.a
+      ref={ref}
+      href="#services"
+      className="group relative flex w-fit items-center gap-3 overflow-visible"
+      style={{ x, y }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      whileHover={reducedMotion ? {} : { scale: 1.08 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: "spring", stiffness: 300, damping: 18 }}
+    >
+      {/* Pulsing glow ring */}
+      {!reducedMotion && (
+        <motion.span
+          className="pointer-events-none absolute -inset-4 rounded-sm"
+          animate={{ boxShadow: ["0 0 0 0 rgba(214,255,59,0)", "0 0 0 6px rgba(214,255,59,0.15)", "0 0 0 0 rgba(214,255,59,0)"] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        />
+      )}
+      <span className="text-[10px] font-extrabold uppercase leading-tight tracking-[0.2em] text-signal">
+        Meet the<br />platform
+      </span>
+      <ArrowDownRight className="h-4 w-4 text-signal transition-transform duration-200 group-hover:translate-y-1 group-hover:translate-x-1" />
+    </motion.a>
+  );
+}
+
+/** Animated scroll indicator with bouncing chevron. */
+function ScrollCue({ reducedMotion }: { reducedMotion: boolean | null }) {
+  return (
+    <div className="absolute bottom-9 right-5 hidden items-center gap-3 text-[10px] font-bold uppercase tracking-[0.15em] text-cream/75 md:flex lg:right-12">
+      <span className="relative flex h-7 w-7 items-center justify-center">
+        {/* Double expanding ring */}
+        {!reducedMotion && (
+          <motion.span
+            className="absolute h-7 w-7 rounded-full border border-signal/70"
+            animate={{ scale: [1, 1.9, 1], opacity: [0.7, 0, 0.7] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+          />
+        )}
+        <motion.span
+          className="absolute h-5 w-5 rounded-full border border-signal/40"
+          animate={reducedMotion ? {} : { scale: [1, 1.6, 1], opacity: [0.5, 0, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
+        />
+        <motion.span
+          animate={reducedMotion ? {} : { y: [0, 5, 0] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="h-4 w-4 text-signal" />
+        </motion.span>
+      </span>
+      Scroll to enter
+    </div>
+  );
+}
+
+/** Animated crest: rotates in, then subtle idle glow. */
+function AnimatedCrest({ inverted = false }: { inverted?: boolean }) {
+  const shouldReduce = useReducedMotion();
+  return (
+    <motion.div
+      initial={shouldReduce ? { opacity: 0 } : { opacity: 0, scale: 0, rotate: -180 }}
+      animate={{ opacity: 1, scale: 1, rotate: 0 }}
+      transition={shouldReduce ? { duration: 0.4 } : { type: "spring", stiffness: 180, damping: 14, delay: 0.05 }}
+    >
+      <motion.div
+        className="flex items-center gap-3"
+        aria-label="Mehansh Platform"
+      >
+        <motion.div
+          className={`relative grid h-12 w-12 place-items-center overflow-hidden border ${inverted ? "border-cream/30 bg-cream" : "border-navy/15 bg-navy"}`}
+          animate={shouldReduce ? {} : { boxShadow: ["0 0 0px 0px rgba(214,255,59,0)", "0 0 12px 3px rgba(214,255,59,0.30)", "0 0 0px 0px rgba(214,255,59,0)"] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        >
+          <img src={crest} alt="Mehansh Platform crest" className="h-10 w-10 object-contain" />
+        </motion.div>
+        <div className={`leading-[0.84] ${inverted ? "text-cream" : "text-navy"}`}>
+          <p className="font-display text-[20px] font-bold tracking-[0.06em]">MEHANSH</p>
+          <p className="font-body mt-1 text-[8px] font-bold tracking-[0.28em]">PLATFORM</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// ─── Main page component ──────────────────────────────────────────────────────
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const shouldReduce = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   const heroOffset = useTransform(scrollYProgress, [0, 0.2], [0, 80]);
   const heroImageY = useTransform(scrollYProgress, [0, 0.16], [0, 92]);
   const heroImageScale = useTransform(scrollYProgress, [0, 0.16], [1, 1.08]);
   const heroContentY = useTransform(scrollYProgress, [0, 0.16], [0, -42]);
+
+  // Mouse position for blob parallax (normalized -1 to 1)
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (shouldReduce) return;
+    const onMove = (e: MouseEvent) => {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      // Only parallax while in hero bounds
+      if (e.clientY > rect.bottom) return;
+      setMouse({
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2,
+      });
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [shouldReduce]);
 
   const closeMenu = () => setMenuOpen(false);
   useEffect(() => {
@@ -158,13 +386,28 @@ export default function Home() {
     event.currentTarget.reset();
   };
 
+  // Stagger variants for eyebrow + headline block + rule + CTA row
+  const heroStagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12, delayChildren: 0.6 } },
+  };
+  const heroItemReveal = {
+    hidden: shouldReduce ? { opacity: 0 } : { opacity: 0, y: 32 },
+    visible: {
+      opacity: 1, y: 0,
+      transition: shouldReduce
+        ? { duration: 0.4 }
+        : { type: "spring" as const, stiffness: 160, damping: 24 },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-cream text-navy selection:bg-signal selection:text-navy">
       <motion.div className="fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-signal" style={{ scaleX }} />
 
       <header className="absolute inset-x-0 top-0 z-30">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-5 sm:px-8 lg:px-12">
-          <Crest inverted />
+          <AnimatedCrest inverted />
           <nav className="hidden items-center gap-7 text-[11px] font-bold uppercase tracking-[0.16em] text-cream lg:flex">
             <a href="#services" className="magnetic-link">What we do</a>
             <a href="#wing" className="magnetic-link">Under our wing</a>
@@ -203,32 +446,69 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="relative min-h-[680px] overflow-hidden bg-navy pt-28 sm:min-h-[760px] md:min-h-[820px]">
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,29,43,0.99)_0%,rgba(31,58,82,0.96)_45%,rgba(31,58,82,0.52)_72%,rgba(31,58,82,0.18)_100%)]" />
-          <motion.div className="absolute -inset-y-24 inset-x-0 bg-cover bg-center opacity-85" style={{ backgroundImage: "url('/manus-storage/mehansh-hero_0f1c8e24.jpg')", y: heroImageY, scale: heroImageScale, willChange: "transform" }} />
-          <div className="noise-layer absolute inset-0 opacity-30 mix-blend-soft-light" />
-          <motion.div style={{ y: heroOffset }} className="absolute -right-28 top-40 h-72 w-72 rounded-full border border-signal/70 sm:-right-20 sm:h-[34rem] sm:w-[34rem]" />
-          <div className="absolute -right-7 top-[25rem] h-5 w-5 rotate-45 bg-teal shadow-[0_0_0_12px_rgba(15,191,199,0.12)]" />
-          <div className="absolute bottom-0 right-[13%] h-32 w-1 bg-signal/80" />
+        {/* ── HERO ── */}
+        <section ref={heroRef} className="relative min-h-[680px] overflow-hidden bg-navy pt-28 sm:min-h-[760px] md:min-h-[820px]">
+          {/* Hero bg photo (Split layout) */}
+          <motion.div
+            className="absolute inset-y-0 right-0 w-full lg:w-[65%] bg-cover bg-center opacity-40 lg:opacity-100 [mask-image:linear-gradient(to_right,transparent,black_25%)] lg:[mask-image:linear-gradient(to_right,transparent,black_20%)]"
+            style={{ backgroundImage: "url('/assets/hero-image.png')", y: heroImageY, scale: heroImageScale, willChange: "transform" }}
+          />
 
-          <motion.div style={{ y: heroContentY, willChange: "transform" }} className="relative mx-auto flex min-h-[570px] max-w-[1440px] flex-col justify-end px-5 pb-14 sm:min-h-[650px] sm:px-8 md:min-h-[710px] md:pb-20 lg:px-12">
-            <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.07 } } }} className="max-w-4xl">
-              <motion.div variants={reveal}><Eyebrow light>Hospitality operations, Pune / Goa / beyond</Eyebrow></motion.div>
-              <motion.h1 variants={reveal} className="mt-8 font-display text-[clamp(3.45rem,16vw,9.3rem)] font-semibold leading-[0.76] tracking-[-0.055em] text-cream">
-                Hospitality,<br /><em className="text-signal">managed</em> end<br className="hidden sm:block" /> to end.
+          {/* Additional dark vignette over the image to ensure text contrast */}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,#1F3A52_30%,transparent_60%)] pointer-events-none" />
+
+          {/* Grain texture */}
+          <div className="noise-layer absolute inset-0 opacity-30 mix-blend-soft-light" />
+
+          {/* Accent shapes */}
+          <HeroAccents reducedMotion={shouldReduce} />
+
+          {/* Content */}
+          <motion.div
+            style={{ y: heroContentY, willChange: "transform" }}
+            className="relative mx-auto flex min-h-[570px] max-w-[1440px] flex-col justify-end px-5 pb-14 sm:min-h-[650px] sm:px-8 md:min-h-[710px] md:pb-20 lg:px-12"
+          >
+            <motion.div
+              className="max-w-4xl"
+              variants={heroStagger}
+              initial="hidden"
+              animate="visible"
+            >
+              {/* Eyebrow */}
+              <motion.div variants={heroItemReveal}>
+                <Eyebrow light>Hospitality operations, Pune / Goa / beyond</Eyebrow>
+              </motion.div>
+
+              {/* Headline — kinetic split-text */}
+              <motion.h1
+                variants={heroItemReveal}
+                className="mt-8 font-display text-[clamp(3.45rem,16vw,9.3rem)] font-semibold leading-[0.76] tracking-[-0.055em] text-cream"
+              >
+                <SplitHeadline text="Hospitality," reducedMotion={shouldReduce} />
+                <SplitHeadline text="managed end" reducedMotion={shouldReduce} />
+                <SplitHeadline text="to end." reducedMotion={shouldReduce} />
               </motion.h1>
-              <motion.div variants={reveal} className="hero-rule mt-9 h-px w-full max-w-2xl bg-cream/40" />
-              <motion.div variants={reveal} className="mt-6 flex max-w-xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-                <p className="max-w-sm border-l-2 border-teal bg-navy/85 px-4 py-3 text-sm leading-6 text-cream shadow-[8px_8px_0_rgba(15,191,199,0.16)] backdrop-blur-[2px] sm:text-base">We take the daily complexity out of hospitality—so a property, institution, or trip can work with purposeful calm.</p>
-                <a href="#services" className="group flex w-fit items-center gap-3 border-b border-signal pb-2 text-[11px] font-bold uppercase tracking-[0.15em] text-signal">
-                  Meet the platform <ArrowDownRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-1" />
-                </a>
+
+              {/* Rule */}
+              <motion.div
+                variants={heroItemReveal}
+                className="hero-rule mt-9 h-px w-full max-w-2xl bg-cream/40"
+              />
+
+              {/* Tagline + CTA row */}
+              <motion.div
+                variants={heroItemReveal}
+                className="mt-6 flex max-w-2xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+              >
+                <p className="max-w-sm px-4 py-3 text-sm leading-6 text-teal/60 sm:text-base font-medium">
+                  We take the daily complexity out of hospitality—so a property, institution, or trip can work with purposeful calm.
+                </p>
+                <MagneticCTA reducedMotion={shouldReduce} />
               </motion.div>
             </motion.div>
-            <div className="absolute bottom-9 right-5 hidden items-center gap-3 text-[10px] font-bold uppercase tracking-[0.15em] text-cream/75 md:flex lg:right-12">
-              <span className="relative flex h-7 w-7 items-center justify-center"><span className="absolute h-7 w-7 rounded-full border border-signal/70 [animation:pulse-ring_2s_ease-in-out_infinite]" /><ChevronDown className="h-4 w-4 text-signal" /></span>
-              Scroll to enter
-            </div>
+
+            {/* Scroll cue */}
+            <ScrollCue reducedMotion={shouldReduce} />
           </motion.div>
         </section>
 
@@ -307,7 +587,7 @@ export default function Home() {
           <ScrollStage className="relative mx-auto grid max-w-[1344px] gap-14 lg:grid-cols-[.8fr_1.2fr] lg:items-center" drift={44}>
             <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.65 }} className="relative mx-auto w-full max-w-[410px] lg:mx-0">
               <div className="absolute -left-5 -top-5 h-full w-full border border-signal/60" />
-              <div className="relative aspect-[3/4] overflow-hidden bg-teal"><img src="/manus-storage/mehansh-founder-portrait_f8964a65.jpeg" alt="Saurabh Anand, founder of Mehansh Platform" className="h-full w-full object-cover object-[center_20%]" /><div className="absolute right-4 top-4 bg-cream p-1"><img src={crest} alt="Mehansh Platform crest" className="h-12 w-12" /></div></div>
+              <div className="relative aspect-[3/4] overflow-hidden bg-teal"><img src="/assets/mehansh-founder-portrait_f8964a65.jpeg" alt="Saurabh Anand, founder of Mehansh Platform" className="h-full w-full object-cover object-[center_20%]" /><div className="absolute right-4 top-4 bg-cream p-1"><img src={crest} alt="Mehansh Platform crest" className="h-12 w-12" /></div></div>
               <div className="absolute -bottom-5 -right-5 bg-signal px-5 py-4 text-navy"><p className="font-display text-4xl font-semibold leading-none">25+</p><p className="mt-1 text-[9px] font-bold uppercase tracking-[0.15em]">Years in hospitality</p></div>
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={{ visible: { transition: { staggerChildren: 0.09 } } }}>
