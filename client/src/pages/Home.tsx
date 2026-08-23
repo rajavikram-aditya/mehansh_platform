@@ -500,7 +500,7 @@ export default function Home() {
                 variants={heroItemReveal}
                 className="mt-6 flex max-w-2xl flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
               >
-                <p className="max-w-sm px-4 py-3 text-sm leading-6 text-cream/80 sm:text-base font-medium">
+                <p className="max-w-sm px-4 py-3 text-sm leading-6 text-[#F2EDE3] sm:text-base font-medium">
                   We take the daily complexity out of hospitality—so a property, institution, or trip can work with purposeful calm.
                 </p>
                 <MagneticCTA reducedMotion={shouldReduce} />
