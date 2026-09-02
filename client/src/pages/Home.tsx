@@ -27,14 +27,14 @@ export default function Home() {
         </div>
         <div className="hero-visual">
           <div className="hero-visual-image">
-            <img src="/manus-storage/mehansh-hero-anchor_eb06e5e5.png" alt="Fresh breakfast service in a lively college canteen" />
+            <img src="/assets/mehansh-hero-anchor.png" alt="Fresh breakfast service in a lively college canteen" />
           </div>
           <div className="hero-visual-caption">
             <span>01</span>
             <span>Everyday hospitality<br />in the details.</span>
           </div>
           <div className="hero-mark-disc">
-            <img src="/manus-storage/mehansh-mark_4f27632a.png" alt="" />
+            <img src="/assets/mehansh-mark.png" alt="" />
           </div>
         </div>
       </section>
@@ -120,7 +120,7 @@ export default function Home() {
       <section className="owner-section section-pad" id="owner">
         <div className="owner-portrait">
           <div className="portrait-grid" />
-          <img src="/manus-storage/mehansh-mark_4f27632a.png" alt="Mehansh Platform hand-and-sprout mark" />
+          <img src="/assets/mehansh-mark.png" alt="Mehansh Platform hand-and-sprout mark" />
           <span className="portrait-note">Founder portrait<br />to be added</span>
         </div>
         <div className="owner-copy">

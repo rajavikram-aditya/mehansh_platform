@@ -13,7 +13,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <Link href="/" className="brand-lockup" onClick={closeMenu} aria-label="Mehansh Platform home">
-          <img className="brand-mark" src="/manus-storage/mehansh-mark_4f27632a.png" alt="" />
+          <img className="brand-mark" src="/assets/mehansh-mark.png" alt="" />
           <span className="brand-wordmark">
             <span>Mehansh</span>
             <span>Platform</span>
