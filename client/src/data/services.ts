@@ -10,7 +10,8 @@ export type BrandCard = {
   description: string;
   image: string;
   imageAlt: string;
-  buttonLabel: string;
+  width: number;
+  height: number;
 };
 
 export type Service = {
@@ -28,6 +29,8 @@ export type Service = {
   icon: LucideIcon;
   image?: string;
   imageAlt?: string;
+  displayLabel?: string;
+  pathwayIntro?: string;
   pathway?: { index: string; title: string; text: string }[];
   brandCards?: BrandCard[];
 };
@@ -51,7 +54,8 @@ export const distributionBrands: BrandCard[] = [
     description: "One of the two brands named in the Mehansh Distribution note.",
     image: "/assets/eco-tejas-reference.jpg",
     imageAlt: "Editorial electric scooter visual for Eco Tejas",
-    buttonLabel: "Explore Eco Tejas",
+    width: 440,
+    height: 292,
   },
   {
     slug: "rowett",
@@ -59,7 +63,8 @@ export const distributionBrands: BrandCard[] = [
     description: "One of the two brands named in the Mehansh Distribution note.",
     image: "/assets/rowett-reference.jpg",
     imageAlt: "Editorial electric three-wheeler visual for ROWETT",
-    buttonLabel: "Explore ROWETT",
+    width: 1600,
+    height: 800,
   },
 ];
 
@@ -69,6 +74,7 @@ export const services: Service[] = [
     index: "01",
     label: "Mehansh Celebration",
     title: "Ber — Goa",
+    displayLabel: "Ber — Goa",
     verticalSlug: "celebration",
     vertical: "Cocktail experience & dining",
     tagline: "Where the essence of Goa meets the art of mixology.",
@@ -85,6 +91,7 @@ export const services: Service[] = [
       { title: "Signature Mains", text: "Slow cooking and masterful seasoning, crafted to delight the senses." },
       { title: "Sweet Endings", text: "Decadent desserts blending the richness of tradition with modern gastronomy." },
     ],
+    pathwayIntro: "A menu that moves through spice, comfort, shareable plates, and sweet endings — each part carrying Ber's balance of Goan spirit and modern craft.",
     pathway: [
       { index: "01", title: "Starters & Comfort Bites", text: "Delight in a range of vibrant Indian-inspired appetizers and comforting small plates." },
       { index: "02", title: "Vegetarian delights", text: "Carefully curated vegetarian dishes celebrating bold flavours and traditional techniques." },
@@ -95,7 +102,7 @@ export const services: Service[] = [
     ],
     accent: "olive",
     icon: CakeSlice,
-    image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85",
+    image: "/assets/ber-editorial.jpg",
     imageAlt: "Editorial Goa dining table with cocktail and shared plates",
   },
   {
@@ -103,6 +110,7 @@ export const services: Service[] = [
     index: "02",
     label: "Mehansh Celebration",
     title: "Beyond Silli Chilli",
+    displayLabel: "Beyond Silli Chilli",
     verticalSlug: "celebration",
     vertical: "Delivery-only cloud kitchen · Pune",
     tagline: "Your go-to destination for delicious, freshly prepared food delivered straight to your doorstep in Pune.",
@@ -122,7 +130,7 @@ export const services: Service[] = [
     ],
     accent: "lavender",
     icon: Utensils,
-    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85",
+    image: "/assets/beyond-silli-chilli.jpg",
     imageAlt: "Freshly prepared food being packed for delivery",
   },
   {
@@ -130,6 +138,7 @@ export const services: Service[] = [
     index: "03",
     label: "VIIT Pune",
     title: "Engineering College Canteen at VIIT Pune",
+    displayLabel: "Engineering College Canteen at VIIT Pune",
     verticalSlug: "celebration",
     vertical: "Campus hospitality",
     tagline: "A refreshing space for food, friends & campus life.",
@@ -148,7 +157,7 @@ export const services: Service[] = [
     ],
     accent: "aqua",
     icon: Utensils,
-    image: "/assets/mehansh-hero-anchor.png",
+    image: "/assets/mehansh-hero-anchor.webp",
     imageAlt: "College canteen counter with fresh breakfast service",
   },
   {
@@ -156,6 +165,7 @@ export const services: Service[] = [
     index: "01",
     label: "Mehansh Hospitality",
     title: "Hotel Lonavilla",
+    displayLabel: "Hotel Lonavilla, Lonavala",
     verticalSlug: "hospitality",
     vertical: "Turnkey hotel project · Lonavala",
     tagline: "A hospitality project in Lonavala, shaped for the work behind the welcome.",
@@ -171,7 +181,7 @@ export const services: Service[] = [
     ],
     accent: "teal",
     icon: Building2,
-    image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1600&q=85",
+    image: "/assets/hotel-lonavilla.jpg",
     imageAlt: "Calm boutique hotel arrival space",
   },
   {
@@ -179,6 +189,7 @@ export const services: Service[] = [
     index: "02",
     label: "Mehansh Hospitality",
     title: "Hotel LXA",
+    displayLabel: "Hotel LXA, Hinjewadi",
     verticalSlug: "hospitality",
     vertical: "Turnkey hotel project · Hinjewadi",
     tagline: "A hospitality project in Hinjewadi, grounded in operational experience.",
@@ -194,7 +205,7 @@ export const services: Service[] = [
     ],
     accent: "teal",
     icon: Building2,
-    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1600&q=85",
+    image: "/assets/hotel-lxa.jpg",
     imageAlt: "Quiet hotel interior with warm natural light",
   },
   {
@@ -202,6 +213,7 @@ export const services: Service[] = [
     index: "03",
     label: "Rahgir",
     title: "Educational trips, made more reachable",
+    displayLabel: "Educational trips, made more reachable",
     verticalSlug: "rahgir",
     vertical: "Travel initiative",
     tagline: "Helping colleges plan educational trips in a cost-effective way.",
@@ -224,6 +236,7 @@ export const services: Service[] = [
     index: "04",
     label: "Mehansh Distribution",
     title: "Electric scooters & three-wheelers",
+    displayLabel: "Electric scooters & three-wheelers",
     verticalSlug: "distribution",
     vertical: "Distribution for two brands",
     tagline: "A distribution vertical for two named brands.",
@@ -249,8 +262,8 @@ export const verticals: Vertical[] = [
     slug: "hospitality",
     index: "01",
     title: "Mehansh Hospitality",
-    summary: "Turnkey hotel projects in Lonavala and Hinjewadi.",
-    description: "A hospitality vertical grounded in the founder's corporate experience, with two hotel projects listed today.",
+    summary: "Hotel operations shaped before the doors open — from Lonavala to Hinjewadi.",
+    description: "A hospitality vertical built around the work behind the welcome, with two hotel projects listed today.",
     accent: "teal",
     icon: Building2,
     serviceSlugs: ["hotel-lonavilla", "hotel-lxa"],
@@ -259,8 +272,8 @@ export const verticals: Vertical[] = [
     slug: "celebration",
     index: "02",
     title: "Mehansh Celebration",
-    summary: "Food, dining, and campus hospitality across Goa and Pune.",
-    description: "Three celebration-led services: Ber, Beyond Silli Chilli, and the VIIT Pune canteen.",
+    summary: "Goan plates, Pune delivery, and a canteen built around daily campus rhythm.",
+    description: "Three food-led services with different rhythms: Ber in Goa, Beyond Silli Chilli in Pune, and VIIT Pune's campus canteen.",
     accent: "olive",
     icon: CakeSlice,
     serviceSlugs: ["ber", "beyond-silli-chilli", "viit"],
@@ -269,8 +282,8 @@ export const verticals: Vertical[] = [
     slug: "rahgir",
     index: "03",
     title: "Rahgir",
-    summary: "Educational trips planned in a cost-effective way.",
-    description: "A new initiative helping colleges make purposeful educational travel more reachable. No project is listed yet.",
+    summary: "Study trips that turn a classroom day into a road with a reason.",
+    description: "A new educational-travel direction focused on cost-conscious planning for colleges. No project is listed yet.",
     accent: "grey",
     icon: Compass,
     serviceSlugs: ["rahgir"],
@@ -279,8 +292,8 @@ export const verticals: Vertical[] = [
     slug: "distribution",
     index: "04",
     title: "Mehansh Distribution",
-    summary: "Electric scooters and three-wheelers for two brands.",
-    description: "Two brands are named in the current note: Eco Tejas and ROWETT. Explore their cards below.",
+    summary: "Two mobility brands, one route to market: electric scooters and three-wheelers.",
+    description: "A distribution direction for the two brands named in the current note: Eco Tejas and ROWETT. Explore their cards below.",
     accent: "lime",
     icon: Factory,
     serviceSlugs: [],
@@ -303,9 +316,28 @@ export function getService(slug: string) {
   return services.find((service) => service.slug === slug);
 }
 
-export const contact = {
-  ownerEmail: "[INSERT OWNER EMAIL]",
-  ownerPhone: "[INSERT OWNER PHONE NUMBER]",
-  saurabhEmail: "[INSERT SAURABH ANAND EMAIL]",
+const PLACEHOLDER_CONTACT = /^\\s*\\[[^\\]]+\\]\\s*$/;
+
+export type Contact = {
+  ownerEmail: string | null;
+  ownerPhone: string | null;
+  saurabhEmail: string | null;
+  linkedin: string;
+};
+
+export const contact: Contact = {
+  // Keep unavailable values null so placeholders can never become production hrefs.
+  ownerEmail: null,
+  ownerPhone: null,
+  saurabhEmail: null,
   linkedin: "https://in.linkedin.com/in/chefsaurabh",
 };
+
+export function isContactValueReady(value: string | null | undefined): value is string {
+  return Boolean(value && !PLACEHOLDER_CONTACT.test(value));
+}
+
+export function getContactHref(kind: "email" | "phone", value: string | null | undefined) {
+  if (!isContactValueReady(value)) return undefined;
+  return kind === "email" ? `mailto:${value}` : `tel:${value.replace(/[^\d+]/g, "")}`;
+}

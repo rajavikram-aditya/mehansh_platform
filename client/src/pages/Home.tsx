@@ -1,16 +1,14 @@
 /* Mehansh Platform style: asymmetric editorial landing page, cream paper canvas, navy trust layer, lime action cue, tactile vertical storytelling. */
 import { ArrowDownRight, ArrowUpRight, Leaf, Sparkles } from "lucide-react";
-import { toast } from "sonner";
 import { Link } from "wouter";
+import { ContactLink, ContactValue } from "../components/ContactValue";
+import RouteMeta from "../components/RouteMeta";
 import { contact, getService, verticals } from "../data/services";
-
-function showComingSoon(brand: string) {
-  toast(`${brand} link coming soon — add the official destination URL when available.`);
-}
 
 export default function Home() {
   return (
     <div className="home-page">
+      <RouteMeta />
       <section className="hero-section">
         <div className="hero-copy">
           <div className="hero-topline">
@@ -27,14 +25,17 @@ export default function Home() {
         </div>
         <div className="hero-visual">
           <div className="hero-visual-image">
-            <img src="/assets/mehansh-hero-anchor.png" alt="Fresh breakfast service in a lively college canteen" />
+            <picture>
+              <source type="image/webp" srcSet="/assets/mehansh-hero-anchor-900.webp 900w, /assets/mehansh-hero-anchor.webp 1536w" sizes="(max-width: 700px) 100vw, 58vw" />
+              <img src="/assets/mehansh-hero-anchor.jpg" sizes="(max-width: 700px) 100vw, 58vw" width="1200" height="800" fetchPriority="high" decoding="async" alt="Fresh breakfast service in a lively college canteen" />
+            </picture>
           </div>
           <div className="hero-visual-caption">
             <span>01</span>
             <span>Everyday hospitality<br />in the details.</span>
           </div>
           <div className="hero-mark-disc">
-            <img src="/assets/mehansh-mark.png" alt="" />
+            <img src="/assets/mehansh-mark-256.png" width="256" height="256" alt="" />
           </div>
         </div>
       </section>
@@ -82,7 +83,7 @@ export default function Home() {
                     if (!service) return null;
                     return (
                       <Link key={slug} href={`/services/${service.slug}`} className="vertical-service-row">
-                        <span>{service.slug === "hotel-lonavilla" ? "Hotel Lonavilla, Lonavala" : service.slug === "hotel-lxa" ? "Hotel LXA, Hinjewadi" : service.title}</span>
+                        <span>{service.displayLabel ?? service.title}</span>
                         <ArrowUpRight size={15} />
                       </Link>
                     );
@@ -92,21 +93,21 @@ export default function Home() {
                   <div className="brand-card-grid">
                     {vertical.brandCards.map((brand) => (
                       <div className="brand-card" key={brand.slug}>
-                        <img src={brand.image} alt={brand.imageAlt} />
+                        <img src={brand.image} alt={brand.imageAlt} width={brand.width} height={brand.height} loading="lazy" decoding="async" />
                         <div className="brand-card-overlay" />
                         <div className="brand-card-content">
                           <span className="brand-card-kicker">Brand {brand.slug === "eco-tejas" ? "01" : "02"}</span>
                           <h4>{brand.title}</h4>
-                          <button type="button" className="brand-explore-button" onClick={() => showComingSoon(brand.title)}>
-                            {brand.buttonLabel} <ArrowUpRight size={14} />
-                          </button>
+                          <span className="brand-explore-button brand-explore-button-disabled" aria-label={`${brand.title}: official destination coming soon`}>
+                            Official destination coming soon
+                          </span>
                         </div>
                       </div>
                     ))}
                   </div>
                 )}
                 {vertical.slug === "rahgir" && (
-                  <div className="vertical-note"><span className="note-pulse" /> No project listed yet — the direction is clear.</div>
+                  <div className="vertical-note"><span className="note-pulse" /> Rahgir is in development, with educational travel planning being shaped for colleges.</div>
                 )}
                 <Link href={vertical.slug === "distribution" ? "/services/distribution" : `/services/${vertical.serviceSlugs[0]}`} className="vertical-footer-link">
                   Open vertical <ArrowUpRight size={14} />
@@ -120,8 +121,8 @@ export default function Home() {
       <section className="owner-section section-pad" id="owner">
         <div className="owner-portrait">
           <div className="portrait-grid" />
-          <img src="/assets/mehansh-mark.png" alt="Mehansh Platform hand-and-sprout mark" />
-          <span className="portrait-note">Founder portrait<br />to be added</span>
+          <img src="/assets/mehansh-mark-256.png" width="256" height="256" alt="Mehansh Platform hand-and-sprout mark" loading="lazy" decoding="async" />
+          <span className="portrait-note">Founder-led<br />hospitality practice</span>
         </div>
         <div className="owner-copy">
           <span className="eyebrow"><span className="eyebrow-dot" /> 03 / The owner</span>
@@ -142,22 +143,10 @@ export default function Home() {
           <p>No forms. No holding pattern. Use the details below to reach the platform directly.</p>
         </div>
         <div className="contact-details">
-          <a href={`mailto:${contact.ownerEmail}`} className="contact-row">
-            <span className="contact-label">Owner's email</span>
-            <span>{contact.ownerEmail}</span><ArrowUpRight size={16} />
-          </a>
-          <a href="tel:+91" className="contact-row">
-            <span className="contact-label">Owner's phone</span>
-            <span>{contact.ownerPhone}</span><ArrowUpRight size={16} />
-          </a>
-          <a href={`mailto:${contact.saurabhEmail}`} className="contact-row">
-            <span className="contact-label">Saurabh Anand's email</span>
-            <span>{contact.saurabhEmail}</span><ArrowUpRight size={16} />
-          </a>
-          <a href={contact.linkedin} target="_blank" rel="noreferrer" className="contact-row">
-            <span className="contact-label">Saurabh Anand's LinkedIn</span>
-            <span>Open profile</span><ArrowUpRight size={16} />
-          </a>
+          <ContactValue label="Owner's email" value={contact.ownerEmail} kind="email" />
+          <ContactValue label="Owner's phone" value={contact.ownerPhone} kind="phone" />
+          <ContactValue label="Saurabh Anand's email" value={contact.saurabhEmail} kind="email" />
+          <ContactLink label="Saurabh Anand's LinkedIn" href={contact.linkedin}>Open profile</ContactLink>
         </div>
       </section>
 

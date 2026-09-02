@@ -1,6 +1,6 @@
 /* Mehansh Platform style: navy footer as a quiet foundation, lime only for the primary contact cue, ruled vertical columns. */
-import { ArrowUpRight } from "lucide-react";
 import { Link } from "wouter";
+import { ContactLink, ContactValue } from "./ContactValue";
 import { contact, getService, verticals } from "../data/services";
 
 export default function SiteFooter() {
@@ -10,20 +10,18 @@ export default function SiteFooter() {
         <div className="footer-lead">
           <span className="eyebrow eyebrow-lime"><span className="eyebrow-dot" /> Contact</span>
           <h2>Let the next journey<br /><em>start here.</em></h2>
-          <a className="footer-action" href={`mailto:${contact.ownerEmail}`}>
-            Begin a conversation <ArrowUpRight size={16} strokeWidth={1.5} />
-          </a>
+          <span className="footer-action footer-action-disabled">Contact details coming soon</span>
         </div>
         <div className="footer-columns">
           <div className="footer-column">
             <span className="footer-label">Direct</span>
-            <a href={`mailto:${contact.ownerEmail}`}>{contact.ownerEmail}</a>
-            <a href="tel:+91">{contact.ownerPhone}</a>
+            <ContactValue label="Owner's email" value={contact.ownerEmail} kind="email" />
+            <ContactValue label="Owner's phone" value={contact.ownerPhone} kind="phone" />
           </div>
           <div className="footer-column">
             <span className="footer-label">Saurabh Anand</span>
-            <a href={`mailto:${contact.saurabhEmail}`}>{contact.saurabhEmail}</a>
-            <a href={contact.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={13} strokeWidth={1.5} /></a>
+            <ContactValue label="Saurabh Anand's email" value={contact.saurabhEmail} kind="email" />
+            <ContactLink label="Saurabh Anand's LinkedIn" href={contact.linkedin}>LinkedIn</ContactLink>
           </div>
           <div className="footer-column">
             <span className="footer-label">Explore</span>

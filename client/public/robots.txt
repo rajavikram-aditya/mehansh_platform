@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mehanshplatform-t84e.vercel.app/sitemap.xml

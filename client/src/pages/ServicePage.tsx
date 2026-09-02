@@ -1,16 +1,12 @@
 /* Mehansh Platform style: service pages use a calm editorial hero, oversized index numerals, hairline rules, and one lime action accent. */
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useEffect } from "react";
-import { toast } from "sonner";
 import { Link } from "wouter";
+import RouteMeta from "../components/RouteMeta";
 import { getService, orderedServices } from "../data/services";
 
 function accentClass(accent: string) {
   return `accent-${accent}`;
-}
-
-function showComingSoon(brand: string) {
-  toast(`${brand} link coming soon — add the official destination URL when available.`);
 }
 
 export default function ServicePage({ slug }: { slug: string }) {
@@ -35,6 +31,7 @@ export default function ServicePage({ slug }: { slug: string }) {
 
   return (
     <div className={`service-page ${accentClass(service.accent)}`}>
+      <RouteMeta service={service} />
       <section className="service-hero section-pad">
         <div className="service-hero-copy">
           <Link href="/#services" className="back-link"><ArrowLeft size={15} /> All services</Link>
@@ -50,7 +47,7 @@ export default function ServicePage({ slug }: { slug: string }) {
         </div>
         <div className="service-hero-media">
           {service.image ? (
-            <img src={service.image} alt={service.imageAlt} />
+            <img src={service.image} alt={service.imageAlt} width="1600" height="1067" loading="lazy" decoding="async" />
           ) : (
             <div className="service-art-panel">
               <ServiceIcon size={72} strokeWidth={1} />
@@ -96,7 +93,7 @@ export default function ServicePage({ slug }: { slug: string }) {
           <div className="pathway-heading">
             <span className="eyebrow"><span className="eyebrow-dot" /> 03 / Pathway</span>
             <h2>A menu that moves<br /><em>with intention.</em></h2>
-            <p>From comfort bites to sweet indulgences, each part of the Ber experience carries the balance of tradition and modern creativity.</p>
+            <p>{service.pathwayIntro ?? "A considered sequence of moments, each one shaped by the needs of the people and places this service serves."}</p>
           </div>
           <div className="pathway-grid">
             {service.pathway.map((item) => (
@@ -122,15 +119,15 @@ export default function ServicePage({ slug }: { slug: string }) {
           <div className="brand-card-grid brand-card-grid-large">
             {service.brandCards.map((brand, index) => (
               <article className="brand-card" key={brand.slug}>
-                <img src={brand.image} alt={brand.imageAlt} />
+                <img src={brand.image} alt={brand.imageAlt} width={brand.width} height={brand.height} loading="lazy" decoding="async" />
                 <div className="brand-card-overlay" />
                 <div className="brand-card-content">
                   <span className="brand-card-kicker">Brand {String(index + 1).padStart(2, "0")}</span>
                   <h4>{brand.title}</h4>
                   <p>{brand.description}</p>
-                  <button type="button" className="brand-explore-button" onClick={() => showComingSoon(brand.title)}>
-                    {brand.buttonLabel} <ArrowUpRight size={14} />
-                  </button>
+                  <span className="brand-explore-button brand-explore-button-disabled" aria-label={`${brand.title}: official destination coming soon`}>
+                    Official destination coming soon
+                  </span>
                 </div>
               </article>
             ))}

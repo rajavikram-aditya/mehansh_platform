@@ -13,7 +13,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <Link href="/" className="brand-lockup" onClick={closeMenu} aria-label="Mehansh Platform home">
-          <img className="brand-mark" src="/assets/mehansh-mark.png" alt="" />
+          <img className="brand-mark" src="/assets/mehansh-mark-256.png" alt="" />
           <span className="brand-wordmark">
             <span>Mehansh</span>
             <span>Platform</span>
@@ -25,12 +25,13 @@ export default function SiteHeader() {
           className="mobile-menu-toggle"
           aria-label={isOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={isOpen}
+          aria-controls="primary-navigation"
           onClick={() => setIsOpen((open) => !open)}
         >
           {isOpen ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
         </button>
 
-        <nav className={`site-nav ${isOpen ? "is-open" : ""}`} aria-label="Primary navigation">
+        <nav id="primary-navigation" className={`site-nav ${isOpen ? "is-open" : ""}`} aria-label="Primary navigation">
           <Link href="/#about" className={location === "/" ? "nav-link active" : "nav-link"} onClick={closeMenu}>
             About
           </Link>
@@ -51,7 +52,7 @@ export default function SiteHeader() {
                       if (!service) return null;
                       return (
                         <Link key={slug} href={`/services/${slug}`} className="service-menu-link" onClick={closeMenu}>
-                          {service.slug === "hotel-lonavilla" ? "Hotel Lonavilla, Lonavala" : service.slug === "hotel-lxa" ? "Hotel LXA, Hinjewadi" : service.title}
+                          {service.displayLabel ?? service.title}
                         </Link>
                       );
                     })}

@@ -46,7 +46,7 @@
   --soft-lavender: #c8b0e1;
   --deep-teal: #19687a;
   --olive: #5e7e49;
-  --slate: #61717a;
+  --slate: #52636c;
   --ink: #1b2f40;
   --line: rgba(31, 58, 82, 0.18);
   --line-light: rgba(242, 237, 227, 0.23);
@@ -2252,4 +2252,117 @@ h2 em,
   .brand-card-grid-large .brand-card {
     min-height: 330px;
   }
+}
+
+/* Remediation overrides: unavailable contact details and brand destinations must read as unavailable, never as broken links. */
+.contact-row-disabled,
+.footer-action-disabled,
+.brand-explore-button-disabled {
+  cursor: default;
+}
+
+.contact-row-disabled {
+  opacity: 0.78;
+}
+
+.contact-row-disabled svg,
+.brand-explore-button-disabled svg {
+  display: none;
+}
+
+.brand-explore-button-disabled {
+  color: var(--navy);
+  background: rgba(242, 237, 227, 0.68);
+  border-color: rgba(31, 58, 82, 0.24);
+}
+
+.brand-explore-button-disabled:hover,
+.brand-explore-button-disabled:active {
+  transform: none;
+  background: rgba(242, 237, 227, 0.68);
+}
+
+.hero-visual-image img,
+.service-hero-media > img,
+.brand-card img,
+.owner-portrait img {
+  display: block;
+  max-width: 100%;
+}
+
+@media (min-width: 921px) and (max-width: 1200px) {
+  .hero-section,
+  .service-hero {
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .hero-copy h1,
+  .service-hero-copy h1 {
+    font-size: clamp(3.75rem, 6vw, 5.8rem);
+  }
+
+  .vertical-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-heading,
+  .section-heading-row {
+    gap: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Footer contact rows: reuse the same truthfulness logic without importing light-section borders into the navy footer. */
+.footer-column .contact-row {
+  display: inline-flex;
+  width: fit-content;
+  grid-template-columns: none;
+  gap: 5px;
+  border: 0;
+  padding: 0;
+  color: rgba(242, 237, 227, 0.75);
+  font-size: 12px;
+}
+
+.footer-column .contact-row .contact-label {
+  display: none;
+}
+
+.footer-column .contact-row:hover {
+  padding: 0;
+  color: var(--lime);
+  background: transparent;
+}
+
+.footer-column .contact-row-disabled {
+  color: rgba(242, 237, 227, 0.5);
+}
+
+.error-reload-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: var(--lime);
+  color: var(--navy);
+  padding: 12px 18px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), background 160ms var(--ease-out);
+}
+
+.error-reload-button:hover {
+  background: var(--cream);
+  transform: translateY(-2px);
+}
+
+.error-reload-button:active {
+  transform: scale(0.97);
 }
