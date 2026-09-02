@@ -1,44 +1,40 @@
 # Mehansh Platform — Design Direction
 
-## Three possible stylistic approaches
+## Reference-led approach
+This website is a **reference-matched build**, not an open-ended style exploration. The uploaded notebook photographs, BER screenshots, brand-guideline document, and supplied logo are the ground-truth specification. Fidelity to those materials overrides generic landing-page conventions.
 
-| Theme Name | Very Brief Intro | Probability |
-| --- | --- | --- |
-| The Establishment Rewired | A heritage hospitality club remade with kinetic editorial layouts and sharp contemporary color. It should signal the steadiness of a trusted operator, not the stiffness of a legacy brochure. | 0.07 |
-| Service in Motion | A travel-logistics-forward visual language with route lines, wayfinding cards, and bright directional systems. This direction makes operational movement and coordination the main visual story. | 0.04 |
-| Dopamine Hospitality Club | A richly structured navy-and-cream editorial experience energized by tightly controlled teal and acid highlights. It brings a lively, memorable pulse to institutional credibility without tipping into neon spectacle. | 0.09 |
+## Chosen design philosophy
+The site will follow a **quiet editorial hospitality system**. It should feel calm, operational, founder-led, and premium: the warmth of a handwritten origin story translated into a disciplined digital experience for hospitality and food-service audiences.
 
-## Chosen approach — Dopamine Hospitality Club
+## Ground-truth visual specification
 
-**Design Movement:** New Wave editorial hospitality, blended with the geometric confidence of a revived members’ club identity.
+| Dimension | Direction to follow |
+|---|---|
+| Design movement | Editorial brand system with hospitality-documentary warmth and restrained presentation-design precision |
+| Core principles | Quiet confidence, operational clarity, tactile warmth, modular service storytelling |
+| Color philosophy | Navy and cream are the stable foundation; lime is a single controlled spark for calls to action and active states only; muted pastels organize service modules without visual noise |
+| Layout paradigm | Asymmetric editorial sections, ruled dividers, measured gutters, and modular blocks rather than a generic centered SaaS stack |
+| Signature elements | Hairline rules, tracked section markers with small lime bullets, oversized serif headings and numerals, curved line motif derived from the supplied hand-and-sprout logo |
+| Interaction philosophy | Direct and calm; no decorative motion, only clear state changes and intentional reveals |
+| Animation | Ease-out transitions, subtle fades and slides, restrained hover feedback, no bounce or overshoot |
+| Typography system | Fraunces for display and major section headings; Inter for body, labels, navigation, and UI controls |
+| Brand essence | A showcase platform for Mehansh’s hospitality, food, and founder-led ventures that turns lived operational experience into calm, trustworthy service presentation; personality: genuine, composed, enterprising |
+| Brand voice | Assured, human, and specific. Headlines should sound grounded rather than promotional. CTAs should be direct and useful. Example lines: “Built from hospitality experience, shaped for everyday service.” and “Explore the services that are already in motion.” |
+| Wordmark and logo | Use the supplied hand-and-sprout symbol as the primary mark, paired with a refined wordmark treatment; the symbol should recur as a subtle motif rather than an oversized neon emblem |
+| Signature brand color | Lime #D6FF3B as the ownable action accent, used sparingly |
 
-**Core Principles:** The experience is grounded in a substantial navy structure; every bright accent must have a navigational or expressive job; typography should move between composed serif authority and concise operational clarity; asymmetric compositions should make the page feel in motion, like a well-run service.
+## Content rules
+The service architecture must include hospitality and celebration offerings drawn from the references, while **excluding all EV / distribution content entirely**. Copy should stay close to the wording supplied in the uploaded materials, with only light editing for web readability.
 
-**Color Philosophy:** Navy and cream provide the atmosphere of capability and trust. Teal carries operational energy across panels and dividers. Acid yellow-green is deliberately scarce and therefore consequential: it marks the invitation, the active state, and the new. Purple acts as a secondary pop, never competing with the primary call to action.
-
-**Layout Paradigm:** The site is built as a sequence of editorial stages connected by side rails, diagonals, oversized index numerals, and offset content blocks instead of a generic centered-card grid. The structure alternates compressed moments of proof with expansive statements of intent.
-
-**Signature Elements:** A heraldic crest treated as a confident seal; a lime highlighter line beneath keywords and metrics; vertical operational indices such as 01 / 02 / 03 that keep the page’s rhythm visible.
-
-**Interaction Philosophy:** Small interactions acknowledge control: service cards rise toward the user, arrows glide forward, and nav states shift with the background. Buttons compress slightly on press, always feeling deliberate rather than ornamental.
-
-**Animation:** Hero copy arrives in a 60ms stagger, the crest reveals through a controlled upward movement, and sections surface when they enter view. Utility motion uses a firm cubic-bezier ease-out, remains under 400ms, and is disabled or reduced where the browser requests reduced motion.
-
-**Typography System:** Cormorant Garamond gives primary headlines an expressive, hospitality-led authority. DM Sans carries all supporting hierarchy in medium and bold weights. Headlines are tall, close-tracked, and sentence-led; labels are uppercase with expanded tracking.
-
-**Brand Essence:** Mehansh Platform makes hospitality operations feel owned, orchestrated, and commercially ready for institutions and property owners. **Personality:** Assured, exacting, energised.
-
-**Brand Voice:** Headlines are clear, direct, and a touch ceremonial; CTAs are practical invitations; microcopy speaks in operational language. Example headline: “Your property. Run with intent.” Example CTA: “Bring us into the room.” Generic filler is prohibited.
-
-**Wordmark & Logo:** A compact heraldic M seal, plate and serviceware motif, with a stately serif wordmark assembled on two lines. The mark works as an approval stamp as much as a logo.
-
-**Signature Brand Color:** **Mehansh Signal — Acid Yellow-Green #D6FF3B.**
+## Experience rules
+Navigation must remain available across all pages. Service pages should share a common editorial template with a hero, description, highlights, and a clear path back to enquiry/contact details. Photography and illustration should feel lived-in, documentary, warm, and editorial rather than generic stock imagery.
 
 ## Style Decisions
-
-- Maintain a navy-dominant structural frame. Bright colors appear as purposeful signals, not decoration.
-- Use visible placeholder language where business details remain unconfirmed; never imply placeholder information is verified.
-- Keep people imagery editorial and operational rather than restaurant-menu-oriented.
-- Acid Yellow-Green #D6FF3B is reserved for primary invitations, active states, key numerals, and decisive proof tags; teal and purple support rhythm without replacing acid as the main signal.
-- Every major section carries an operational index, rail, seal, or directional mark so that the page reads as one orchestrated service system.
-- Image choices privilege service choreography, kitchens, staff coordination, property handovers, logistics, and institutional scale over generic hospitality atmosphere.
+- Keep the dominant canvas cream, not bright white, so the site preserves the softness of the brand deck and notebook sources.
+- Use navy as the primary text and structure color for trust and legibility.
+- Reserve lime for one main action area per viewport, plus small section bullets or index chips.
+- Introduce pastel service blocks to separate business lines without making the experience playful or loud.
+- Build the hero and founder areas with calm image safe zones on the left for type and navigation, reflecting the brand-guideline note on overlay treatment.
+- Maintain visible hairline dividers and generous section padding so the site feels composed and architectural.
+- Reinterpret the founder notebook story digitally through ruled lines, subtle paper texture, and editorial spacing rather than literal notebook skeuomorphism.
+- For BER pages, shift toward a finer black/ink editorial mood within the overall brand system while preserving shared navigation and CTA language.

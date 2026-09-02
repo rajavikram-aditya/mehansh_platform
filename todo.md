@@ -1,62 +1,33 @@
-# Revision Checklist
+# Preview recovery checklist
 
-- [x] Preserve and strengthen the hero’s scroll-driven movement.
-- [x] Add coordinated scroll-triggered motion to each major site section.
-- [x] Improve mobile typography, spacing, and visual rhythm without removing the editorial system.
-- [x] Validate desktop and mobile motion behavior before delivery.
+## Preview recovery checklist
 
-## Under Our Wing Portfolio Consistency
+- [x] Confirm the current dev-server status and preview URL.
+- [x] Inspect the latest server and browser logs for availability errors.
+- [x] Restart the managed preview service if it is stale or unavailable.
+- [x] Verify the landing page responds after the refresh.
+- [x] Report the working preview access path and any remaining limitation.
 
-- [x] Make all four portfolio cards use the same image-background card construction.
-- [x] Anchor every location tag inside its own card and apply small corner number tags uniformly.
-- [x] Restyle unconfirmed content notes as low-emphasis draft markers instead of live-status badges.
-- [x] Verify the refined portfolio grid on desktop and mobile.
+## Service order update
 
-## Hero Readability
+- [x] Reorder shared service data to BER, Beyond Silli Chilli, and VIIT first.
+- [x] Rename the VIIT service label consistently across cards and routes.
+- [x] Verify landing-page cards and navigation dropdown order.
+- [x] Run the frontend check and capture an updated preview.
 
-- [x] Keep hero copy fully legible throughout its scroll-driven movement.
-- [x] Reinforce supporting-copy contrast without removing the hero animation.
-- [x] Verify the corrected hero on desktop and mobile.
+## Four-vertical restructure
 
-## Section Color and Alignment
+- [x] Replace the flat service list with Mehansh Hospitality, Mehansh Celebration, Rahgir, and Mehansh Distribution.
+- [x] Add Hospitality projects: Hotel Lonavilla, Lonavala and Hotel LXA, Hinjewadi.
+- [x] Keep Celebration ordered as Ber, Beyond Silli Chilli, and VIIT Pune.
+- [x] Add the Rahgir write-up and explicitly show that no project is listed yet.
+- [x] Add Eco Tejas and ROWETT distribution cards with images and exploration buttons.
+- [x] Verify the updated responsive preview and save a new checkpoint.
 
-- [x] Align the Under Our Wing rail with the content system rather than the heading text.
-- [x] Tune service-card color contrast and normalize the card content baseline.
-- [x] Confirm desktop and mobile section alignment after the refinement.
+## GitHub push
 
-## Ber Anjuna Image
-
-- [x] Add the user-provided Ber Anjuna restaurant photograph to its portfolio card.
-- [x] Verify the image crop, overlay, and text contrast on the completed card.
-
-## Under Our Wing Spacing
-
-- [x] Remove the artificial blank gap above the Under Our Wing heading.
-- [x] Preserve the section transition and verify the corrected scroll position.
-
-## Service Card Color Treatment
-
-- [x] Give the Rahgir card a full teal brand treatment with readable navy content.
-- [x] Give the Beyond Silli Chilli card a full purple brand treatment with readable cream content.
-- [x] Verify the color-balanced service grid on desktop and mobile.
-
-## Mobile What We Do Index
-
-- [x] Keep the decorative What We Do index from overlapping the mobile heading.
-- [x] Verify the corrected heading at mobile and desktop sizes.
-
-## Mobile Navigation Redesign
-
-- [x] Replace the partial menu dropdown with a full-screen mobile navigation layer.
-- [x] Add a clear menu label, close control, numbered link hierarchy, and action area.
-- [x] Verify the open and closed mobile navigation states.
-
-## Founder Portrait
-
-- [x] Add the user-provided founder portrait to the founder section.
-- [x] Verify its crop and visual balance against the founder credentials.
-
-## GitHub Image Source Audit
-
-- [x] Audit the image paths used by the website and the tracked repository contents.
-- [x] Document the image-source arrangement in the repository without breaking the live site.
+- [ ] Check AGENTS.md instructions and the existing Git remote state.
+- [ ] Confirm the target repository and branch.
+- [ ] Commit the current website changes.
+- [ ] Push the commit to rajavikram-aditya/mehansh_platform.
+- [ ] Verify the pushed files and commit on GitHub.
