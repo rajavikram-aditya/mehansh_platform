@@ -1,5 +1,6 @@
 /* Mehansh Platform style: the app shell stays minimal so the editorial page structure remains the primary interaction. */
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
+import PageTransition from "./components/PageTransition";
 import ErrorBoundary from "./components/ErrorBoundary";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
@@ -18,21 +19,24 @@ function SiteFrame({ children }: { children: React.ReactNode }) {
 }
 
 function Router() {
+  const [location] = useLocation();
   return (
-    <Switch>
-      <Route path="/">
-        <SiteFrame><Home /></SiteFrame>
-      </Route>
-      <Route path="/services/:slug">
-        {(params) => <SiteFrame><ServicePage slug={params.slug} /></SiteFrame>}
-      </Route>
-      <Route path="/404">
-        <SiteFrame><NotFound /></SiteFrame>
-      </Route>
-      <Route>
-        <SiteFrame><NotFound /></SiteFrame>
-      </Route>
-    </Switch>
+    <PageTransition routeKey={location}>
+      <Switch>
+        <Route path="/">
+          <SiteFrame><Home /></SiteFrame>
+        </Route>
+        <Route path="/services/:slug">
+          {(params) => <SiteFrame><ServicePage slug={params.slug} /></SiteFrame>}
+        </Route>
+        <Route path="/404">
+          <SiteFrame><NotFound /></SiteFrame>
+        </Route>
+        <Route>
+          <SiteFrame><NotFound /></SiteFrame>
+        </Route>
+      </Switch>
+    </PageTransition>
   );
 }
 
