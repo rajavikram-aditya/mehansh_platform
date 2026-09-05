@@ -25,12 +25,12 @@ function Router() {
   const [location] = useLocation();
   return (
     <PageTransition routeKey={location}>
-      <Switch key={location}>
+      <Switch>
         <Route path="/">
           <SiteFrame><Home /></SiteFrame>
         </Route>
         <Route path="/services/:slug">
-          {(params) => <SiteFrame><ServicePage slug={params.slug} /></SiteFrame>}
+          {(params) => <SiteFrame><ServicePage key={params.slug} slug={params.slug} /></SiteFrame>}
         </Route>
         <Route path="/404">
           <SiteFrame><NotFound /></SiteFrame>

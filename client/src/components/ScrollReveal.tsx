@@ -1,4 +1,4 @@
-/* Mehansh Platform style: calm, once-only scroll-reveal. Fades + slides up 16px on first viewport entry. No re-trigger. */
+/* Mehansh Platform style: calm, staggered mount-reveal. Fades + slides up on component mount with optional delay for stagger. */
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
@@ -10,7 +10,7 @@ interface ScrollRevealProps {
   delay?: number;
   /** Custom className on the wrapper div. */
   className?: string;
-  /** Override the slide distance in px (default 16). */
+  /** Override the slide distance in px (default 24). */
   offset?: number;
   /** Optional ID for anchor linking. */
   id?: string;
@@ -28,33 +28,18 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const shouldReduceMotion = useReducedMotion();
 
-  if (shouldReduceMotion) {
-    return (
-      <motion.div
-        id={id}
-        aria-label={ariaLabel}
-        className={className}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 0.4, delay }}
-      >
-        {children}
-      </motion.div>
-    );
-  }
-
   return (
     <motion.div
       id={id}
       aria-label={ariaLabel}
       className={className}
-      initial={{ opacity: 0, y: offset }}
-      whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: offset }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.5, ease: EASE_OUT, delay }}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : offset }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: shouldReduceMotion ? 0.2 : 0.55,
+        ease: EASE_OUT,
+        delay,
+      }}
     >
       {children}
     </motion.div>

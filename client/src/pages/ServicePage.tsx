@@ -1,6 +1,6 @@
 /* Mehansh Platform style: service pages use a calm editorial hero, oversized index numerals, hairline rules, and one lime action accent. */
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Link } from "wouter";
 import RouteMeta from "../components/RouteMeta";
 import ScrollReveal from "../components/ScrollReveal";
@@ -13,7 +13,7 @@ function accentClass(accent: string) {
 export default function ServicePage({ slug }: { slug: string }) {
   const service = getService(slug);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [slug]);
 
