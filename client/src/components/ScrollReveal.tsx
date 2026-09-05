@@ -37,7 +37,7 @@ export default function ScrollReveal({
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        viewport={{ once: false, margin: "-10%" }}
+        viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 0.4, delay }}
       >
         {children}
@@ -53,7 +53,7 @@ export default function ScrollReveal({
       initial={{ opacity: 0, y: offset }}
       whileInView={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: offset }}
-      viewport={{ once: false, margin: "-10%" }}
+      viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.5, ease: EASE_OUT, delay }}
     >
       {children}

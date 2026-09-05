@@ -25,7 +25,7 @@ function Router() {
   const [location] = useLocation();
   return (
     <PageTransition routeKey={location}>
-      <Switch>
+      <Switch key={location}>
         <Route path="/">
           <SiteFrame><Home /></SiteFrame>
         </Route>
