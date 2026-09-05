@@ -26,8 +26,8 @@
 
 ## GitHub push
 
-- [ ] Check AGENTS.md instructions and the existing Git remote state.
-- [ ] Confirm the target repository and branch.
-- [ ] Commit the current website changes.
-- [ ] Push the commit to rajavikram-aditya/mehansh_platform.
-- [ ] Verify the pushed files and commit on GitHub.
+- [x] Check AGENTS.md instructions and the existing Git remote state.
+- [x] Confirm the target repository and branch.
+- [x] Commit the current website changes.
+- [x] Push the commit to rajavikram-aditya/mehansh_platform.
+- [x] Verify the pushed files and commit on GitHub.
