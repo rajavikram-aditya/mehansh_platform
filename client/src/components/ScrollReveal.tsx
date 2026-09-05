@@ -22,14 +22,27 @@ export default function ScrollReveal({
   children,
   delay = 0,
   className,
-  offset = 16,
+  offset = 24,
   id,
   "aria-label": ariaLabel,
 }: ScrollRevealProps) {
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
-    return <div id={id} className={className} aria-label={ariaLabel}>{children}</div>;
+    return (
+      <motion.div
+        id={id}
+        aria-label={ariaLabel}
+        className={className}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        viewport={{ once: false, margin: "-10%" }}
+        transition={{ duration: 0.4, delay }}
+      >
+        {children}
+      </motion.div>
+    );
   }
 
   return (
@@ -39,8 +52,9 @@ export default function ScrollReveal({
       className={className}
       initial={{ opacity: 0, y: offset }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 0.4, ease: EASE_OUT, delay }}
+      exit={{ opacity: 0, y: offset }}
+      viewport={{ once: false, margin: "-10%" }}
+      transition={{ duration: 0.5, ease: EASE_OUT, delay }}
     >
       {children}
     </motion.div>

@@ -12,6 +12,18 @@ export default function Home() {
     <div className="home-page">
       <RouteMeta />
       <section className="hero-section">
+        <video
+          className="hero-video-background"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/assets/mehansh-hero-anchor.jpg"
+          // [REPLACE: video asset]
+        >
+          {/* <source src="/assets/hero-video.mp4" type="video/mp4" /> */}
+        </video>
+        <div className="hero-overlay" />
         <div className="hero-copy">
           <div className="hero-topline">
             <span className="eyebrow eyebrow-lime"><span className="eyebrow-dot" /> Hospitality / Food / Places</span>
@@ -20,25 +32,6 @@ export default function Home() {
           <h1>Built from<br /><em>experience.</em></h1>
           <p className="hero-lede">Mehansh Platform is a place for Genuine Soul to achieve Genuine Dreams — shaped by hospitality, service, and the everyday work of making a place feel right.</p>
           <Link href="#services" className="button button-lime">Explore the platform <ArrowUpRight size={16} /></Link>
-          <div className="hero-footnote">
-            <span className="hero-footnote-line" />
-            <span>Turn the page<br />to see what is in motion.</span>
-          </div>
-        </div>
-        <div className="hero-visual">
-          <div className="hero-visual-image">
-            <picture>
-              <source type="image/webp" srcSet="/assets/mehansh-hero-anchor-900.webp 900w, /assets/mehansh-hero-anchor.webp 1536w" sizes="(max-width: 700px) 100vw, 58vw" />
-              <img src="/assets/mehansh-hero-anchor.jpg" sizes="(max-width: 700px) 100vw, 58vw" width="1200" height="800" fetchPriority="high" decoding="async" alt="Fresh breakfast service in a lively college canteen" />
-            </picture>
-          </div>
-          <div className="hero-visual-caption">
-            <span>01</span>
-            <span>Everyday hospitality<br />in the details.</span>
-          </div>
-          <div className="hero-mark-disc">
-            <img src="/assets/mehansh-mark-256.png" width="256" height="256" alt="" />
-          </div>
         </div>
       </section>
 
@@ -65,11 +58,16 @@ export default function Home() {
           </div>
           <p>Mehansh Platform brings hospitality, food, travel, and distribution into one founder-led ecosystem. Each vertical has its own rhythm and a clear place to begin.</p>
         </div>
-        <div className="vertical-grid">
-          {verticals.map((vertical, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
+          {["celebration", "hospitality", "rahgir", "distribution"].map((slug, index) => {
+            const vertical = verticals.find(v => v.slug === slug)!;
             const VerticalIcon = vertical.icon;
+            
+            let colSpanClass = "md:col-span-4";
+            if (vertical.slug === "celebration") colSpanClass = "md:col-span-12";
+
             return (
-              <ScrollReveal delay={index * 0.08} className={`vertical-card vertical-card-${vertical.accent}`} id={`vertical-${vertical.slug}`} key={vertical.slug}>
+              <ScrollReveal delay={index * 0.08} className={`vertical-card ${colSpanClass} vertical-card-${vertical.accent}`} id={`vertical-${vertical.slug}`} key={vertical.slug}>
                 <div className="vertical-card-topline">
                   <span className="card-index">{vertical.index}</span>
                   <VerticalIcon size={21} strokeWidth={1.25} />
