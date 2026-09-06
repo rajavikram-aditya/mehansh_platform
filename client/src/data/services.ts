@@ -133,7 +133,7 @@ export const services: Service[] = [
         quote: "A refreshing blend of authentic spices and contemporary dining. Easily one of the standout dining spots in Goa.",
       },
     ],
-    instagramUrl: undefined, // Set to string once official handle is live; undefined renders disabled "Coming Soon" state
+    instagramUrl: "https://www.instagram.com/ber.goa?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
     contactPhone: "+917020391755", // Direct phone contact
   },
   {
