@@ -44,8 +44,10 @@ export default function Home() {
           <p className="display-quote">“Mehansh” means <em>Genuine Soul.</em><br />A platform is where a journey begins.</p>
           <div className="manifesto-detail">
             <div className="manifesto-rule" />
-            <p>After more than 25 years in corporate hospitality, the founder saw how difficult it can be to set up a business without a mentor. Mehansh Platform began from that insight: a place where experience can become momentum.</p>
-            <Link href="#owner" className="text-link">Read the founder's note <ArrowDownRight size={15} /></Link>
+            <div>
+              <p>After more than 25 years in corporate hospitality, the founder saw how difficult it can be to set up a business without a mentor. Mehansh Platform began from that insight: a place where experience can become momentum.</p>
+              <Link href="#owner" className="text-link">Read the founder's note <ArrowDownRight size={15} /></Link>
+            </div>
           </div>
         </div>
       </ScrollReveal>

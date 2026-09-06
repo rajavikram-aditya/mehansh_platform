@@ -655,7 +655,7 @@ h2 em,
   max-width: 550px;
   grid-template-columns: 42px minmax(0, 1fr);
   gap: 18px;
-  margin: 78px 0 0 auto;
+  margin: 40px 0 0 0;
 }
 
 .manifesto-rule {
@@ -670,6 +670,11 @@ h2 em,
   max-width: 520px;
   font-size: 17px;
   line-height: 1.7;
+}
+
+.manifesto-detail p,
+.manifesto-detail .text-link {
+  grid-column: 2;
 }
 
 .text-link {
@@ -1828,7 +1833,7 @@ h2 em,
   }
 
   .manifesto-detail {
-    margin-top: 54px;
+    margin-top: 36px;
   }
 
   .services-heading,
