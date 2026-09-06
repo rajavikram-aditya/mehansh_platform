@@ -6,8 +6,8 @@
   Inter for nav, body, controls. Hairline rules, 8px rhythm, rounded bento cards,
   and continuous ease-out scroll animations.
 */
-@import "tailwindcss";
 @import "tw-animate-css";
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
