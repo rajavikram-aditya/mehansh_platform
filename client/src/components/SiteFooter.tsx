@@ -20,7 +20,6 @@ export default function SiteFooter() {
           </div>
           <div className="footer-column">
             <span className="footer-label">Saurabh Anand</span>
-            <ContactValue label="Saurabh Anand's email" value={contact.saurabhEmail} kind="email" />
             <ContactLink label="Saurabh Anand's LinkedIn" href={contact.linkedin}>LinkedIn</ContactLink>
           </div>
           <div className="footer-column">

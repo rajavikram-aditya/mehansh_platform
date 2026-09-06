@@ -10,6 +10,7 @@ import SiteHeader from "./components/SiteHeader";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ServicePage from "./pages/ServicePage";
+import ContactPage from "./pages/ContactPage";
 
 function SiteFrame({ children }: { children: React.ReactNode }) {
   return (
@@ -23,11 +24,30 @@ function SiteFrame({ children }: { children: React.ReactNode }) {
 
 function Router() {
   const [location] = useLocation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.location.hash) {
+        const id = window.location.hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [location]);
+
   return (
     <PageTransition routeKey={location}>
       <Switch>
         <Route path="/">
           <SiteFrame><Home /></SiteFrame>
+        </Route>
+        <Route path="/contact">
+          <SiteFrame><ContactPage /></SiteFrame>
         </Route>
         <Route path="/services/:slug">
           {(params) => <SiteFrame><ServicePage key={params.slug} slug={params.slug} /></SiteFrame>}

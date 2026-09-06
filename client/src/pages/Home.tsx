@@ -145,7 +145,6 @@ export default function Home() {
         <div className="contact-details">
           <ContactValue label="Owner's email" value={contact.ownerEmail} kind="email" />
           <ContactValue label="Owner's phone" value={contact.ownerPhone} kind="phone" />
-          <ContactValue label="Saurabh Anand's email" value={contact.saurabhEmail} kind="email" />
           <ContactLink label="Saurabh Anand's LinkedIn" href={contact.linkedin}>Open profile</ContactLink>
         </div>
       </ScrollReveal>

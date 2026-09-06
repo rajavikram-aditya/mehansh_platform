@@ -2,7 +2,11 @@
 import { useEffect } from "react";
 import type { Service } from "../data/services";
 
-type RouteMetaProps = { service?: Service | null };
+type RouteMetaProps = {
+  service?: Service | null;
+  title?: string;
+  description?: string;
+};
 
 function setMeta(attribute: "name" | "property", key: string, content: string) {
   let tag = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
@@ -14,13 +18,15 @@ function setMeta(attribute: "name" | "property", key: string, content: string) {
   tag.content = content;
 }
 
-export default function RouteMeta({ service }: RouteMetaProps) {
+export default function RouteMeta({ service, title: customTitle, description: customDescription }: RouteMetaProps) {
   useEffect(() => {
-    const isHome = !service;
-    const title = isHome ? "Mehansh Platform — Genuine Soul, Genuine Dreams" : `${service.title} — Mehansh Platform`;
-    const description = isHome
-      ? "Mehansh Platform is a founder-led hospitality, celebration, travel, and distribution platform shaped by experience."
-      : service.shortDescription;
+    const isHome = !service && !customTitle;
+    const title = customTitle ?? (service ? `${service.title} — Mehansh Platform` : "Mehansh Platform — Genuine Soul, Genuine Dreams");
+    const description =
+      customDescription ??
+      (service
+        ? service.shortDescription
+        : "Mehansh Platform is a founder-led hospitality, celebration, travel, and distribution platform shaped by experience.");
     const image = service?.image?.startsWith("/") ? `${window.location.origin}${service.image}` : `${window.location.origin}/assets/mehansh-hero-anchor.webp`;
     const url = `${window.location.origin}${window.location.pathname}`;
 
@@ -46,11 +52,12 @@ export default function RouteMeta({ service }: RouteMetaProps) {
     const jsonLd = document.createElement("script");
     jsonLd.id = "mehansh-jsonld";
     jsonLd.type = "application/ld+json";
-    const schema = isHome
+    const schema = !service
       ? {
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Mehansh Platform",
+          name: title,
+          description,
           url: window.location.origin,
           logo: `${window.location.origin}/assets/mehansh-mark-256.png`,
           sameAs: ["https://in.linkedin.com/in/chefsaurabh"],
@@ -66,7 +73,7 @@ export default function RouteMeta({ service }: RouteMetaProps) {
         };
     jsonLd.textContent = JSON.stringify(schema);
     document.head.appendChild(jsonLd);
-  }, [service]);
+  }, [service, customTitle, customDescription]);
 
   return null;
 }

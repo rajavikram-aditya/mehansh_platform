@@ -2,7 +2,7 @@
 import type { LucideIcon } from "lucide-react";
 import { Building2, CakeSlice, Compass, Factory, Utensils } from "lucide-react";
 
-export type ServiceAccent = "aqua" | "lavender" | "olive" | "teal" | "lime" | "grey";
+export type ServiceAccent = "aqua" | "lavender" | "olive" | "teal" | "lime" | "grey" | "terracotta";
 
 export type BrandCard = {
   slug: string;
@@ -228,7 +228,7 @@ export const services: Service[] = [
       { title: "Cost-effective", text: "Planned so more students can afford to participate." },
       { title: "Learning through travel", text: "Trips designed to help students gain knowledge beyond the classroom." },
     ],
-    accent: "grey",
+    accent: "terracotta",
     icon: Compass,
   },
   {
@@ -284,7 +284,7 @@ export const verticals: Vertical[] = [
     title: "Rahgir",
     summary: "Study trips that turn a classroom day into a road with a reason.",
     description: "A new educational-travel direction focused on cost-conscious planning for colleges. No project is listed yet.",
-    accent: "grey",
+    accent: "terracotta",
     icon: Compass,
     serviceSlugs: ["rahgir"],
   },
@@ -328,7 +328,7 @@ export type Contact = {
 export const contact: Contact = {
   // Keep unavailable values null so placeholders can never become production hrefs.
   ownerEmail: null,
-  ownerPhone: null,
+  ownerPhone: "+917020391755",
   saurabhEmail: null,
   linkedin: "https://in.linkedin.com/in/chefsaurabh",
 };

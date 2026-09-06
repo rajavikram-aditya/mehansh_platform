@@ -1,6 +1,6 @@
 /* Mehansh Platform style: calm, staggered mount-reveal. Fades + slides up on component mount with optional delay for stagger. */
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 const EASE_OUT: [number, number, number, number] = [0.23, 1, 0.32, 1];
 
@@ -10,6 +10,8 @@ interface ScrollRevealProps {
   delay?: number;
   /** Custom className on the wrapper div. */
   className?: string;
+  /** Custom inline styles on the wrapper div. */
+  style?: CSSProperties;
   /** Override the slide distance in px (default 24). */
   offset?: number;
   /** Optional ID for anchor linking. */
@@ -22,6 +24,7 @@ export default function ScrollReveal({
   children,
   delay = 0,
   className,
+  style,
   offset = 24,
   id,
   "aria-label": ariaLabel,
@@ -33,8 +36,10 @@ export default function ScrollReveal({
       id={id}
       aria-label={ariaLabel}
       className={className}
+      style={style}
       initial={{ opacity: 0, y: shouldReduceMotion ? 0 : offset }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{
         duration: shouldReduceMotion ? 0.2 : 0.55,
         ease: EASE_OUT,

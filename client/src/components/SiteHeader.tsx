@@ -6,8 +6,23 @@ import { getService, verticals } from "../data/services";
 
 export default function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const closeMenu = () => setIsOpen(false);
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    if (location === "/") {
+      // Already on home, prevent full navigation and just smooth scroll
+      e.preventDefault();
+      const id = hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+      // Update hash in URL without triggering a route change re-render
+      window.history.pushState(null, "", hash);
+    }
+    closeMenu();
+  };
 
   return (
     <header className="site-header">
@@ -32,7 +47,7 @@ export default function SiteHeader() {
         </button>
 
         <nav id="primary-navigation" className={`site-nav ${isOpen ? "is-open" : ""}`} aria-label="Primary navigation">
-          <Link href="/#about" className={location === "/" ? "nav-link active" : "nav-link"} onClick={closeMenu}>
+          <Link href="/#about" className={location === "/" ? "nav-link active" : "nav-link"} onClick={(e) => handleAnchorClick(e, "#about")}>
             About
           </Link>
           <details className="nav-services">
@@ -42,7 +57,7 @@ export default function SiteHeader() {
             <div className="services-menu services-menu-grouped">
               {verticals.map((vertical) => (
                 <div className="menu-group" key={vertical.slug}>
-                  <Link href={`/#vertical-${vertical.slug}`} className="menu-group-heading" onClick={closeMenu}>
+                  <Link href={`/#vertical-${vertical.slug}`} className="menu-group-heading" onClick={(e) => handleAnchorClick(e, `#vertical-${vertical.slug}`)}>
                     <span className="menu-index">{vertical.index}</span>
                     <span>{vertical.title}</span>
                   </Link>
@@ -61,15 +76,19 @@ export default function SiteHeader() {
               ))}
             </div>
           </details>
-          <Link href="/#owner" className="nav-link" onClick={closeMenu}>
+          <Link href="/#owner" className="nav-link" onClick={(e) => handleAnchorClick(e, "#owner")}>
             Owner
           </Link>
-          <Link href="/#contact" className="nav-link" onClick={closeMenu}>
+          <Link href="/#contact" className="nav-link" onClick={(e) => handleAnchorClick(e, "#contact")}>
             Contact
           </Link>
-          <Link href="/#services" className="header-cta" onClick={closeMenu}>
-            Explore services <span aria-hidden="true">↗</span>
+          <Link href="/contact" className="header-cta" onClick={closeMenu}>
+            Contact <span aria-hidden="true">↗</span>
           </Link>
+          
+          <div className="mobile-nav-logo" aria-hidden="true">
+            <img src="/assets/mehansh-mark-256.png" alt="" />
+          </div>
         </nav>
       </div>
     </header>
