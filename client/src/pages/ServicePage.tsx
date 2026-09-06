@@ -60,7 +60,7 @@ export default function ServicePage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <ScrollReveal className="service-introduction section-pad section-cream">
+      <ScrollReveal className="service-introduction section-pad section-cream" offset={28}>
         <div className="section-marker"><span className="eyebrow-dot" /> 01 / The work</div>
         <div className="service-intro-grid">
           <h2>Made for the moments<br /><em>that matter.</em></h2>
@@ -70,7 +70,7 @@ export default function ServicePage({ slug }: { slug: string }) {
         </div>
       </ScrollReveal>
 
-      <ScrollReveal className="service-highlights section-pad">
+      <ScrollReveal className="service-highlights section-pad" offset={24}>
         <div className="section-heading-row">
           <div>
             <span className="eyebrow"><span className="eyebrow-dot" /> 02 / In practice</span>
@@ -80,36 +80,36 @@ export default function ServicePage({ slug }: { slug: string }) {
         </div>
         <div className="highlight-grid">
           {service.highlights.map((highlight, index) => (
-            <ScrollReveal delay={index * 0.08} className="highlight-card" key={highlight.title}>
+            <div className="highlight-card" key={highlight.title}>
               <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
               <h3>{highlight.title}</h3>
               <p>{highlight.text}</p>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
       </ScrollReveal>
 
       {service.pathway && (
-        <ScrollReveal className="pathway-section section-pad">
+        <ScrollReveal className="pathway-section section-pad" offset={20}>
           <div className="pathway-heading">
             <span className="eyebrow"><span className="eyebrow-dot" /> 03 / Pathway</span>
             <h2>A menu that moves<br /><em>with intention.</em></h2>
             <p>{service.pathwayIntro ?? "A considered sequence of moments, each one shaped by the needs of the people and places this service serves."}</p>
           </div>
           <div className="pathway-grid">
-            {service.pathway.map((item, index) => (
-              <ScrollReveal delay={index * 0.08} className="pathway-card" key={item.index}>
+            {service.pathway.map((item) => (
+              <div className="pathway-card" key={item.index}>
                 <span className="pathway-index">{item.index}</span>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
-              </ScrollReveal>
+              </div>
             ))}
           </div>
         </ScrollReveal>
       )}
 
       {service.brandCards && (
-        <ScrollReveal className="brand-showcase section-pad">
+        <ScrollReveal className="brand-showcase section-pad" offset={24}>
           <div className="section-heading-row">
             <div>
               <span className="eyebrow"><span className="eyebrow-dot" /> 03 / The brands</span>
@@ -119,7 +119,7 @@ export default function ServicePage({ slug }: { slug: string }) {
           </div>
           <div className="brand-card-grid brand-card-grid-large">
             {service.brandCards.map((brand, index) => (
-              <ScrollReveal delay={index * 0.08} className="brand-card" key={brand.slug}>
+              <div className="brand-card" key={brand.slug}>
                 <img src={brand.image} alt={brand.imageAlt} width={brand.width} height={brand.height} loading="lazy" decoding="async" />
                 <div className="brand-card-overlay" />
                 <div className="brand-card-content">
@@ -130,13 +130,13 @@ export default function ServicePage({ slug }: { slug: string }) {
                     Official destination coming soon
                   </span>
                 </div>
-              </ScrollReveal>
+              </div>
             ))}
           </div>
         </ScrollReveal>
       )}
 
-      <ScrollReveal className="service-cta section-pad">
+      <ScrollReveal className="service-cta section-pad" offset={16}>
         <div className="cta-mark"><ServiceIcon size={26} strokeWidth={1.25} /></div>
         <span className="eyebrow eyebrow-lime"><span className="eyebrow-dot" /> Next step</span>
         <h2>Have a question about<br /><em>{service.title}?</em></h2>

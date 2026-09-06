@@ -36,6 +36,9 @@
 }
 
 :root {
+  /* unslop-ignore: Mehansh Platform brand palette — cream/navy/olive and Fraunces/Inter
+     are deliberate brand decisions, not unedited defaults. Do not change without
+     explicit brand sign-off. */
   --navy: #1f3a52;
   --navy-deep: #162b3d;
   --cream: #f2ede3;

@@ -35,7 +35,7 @@ export default function Home() {
         </div>
       </section>
 
-      <ScrollReveal className="manifesto-section section-pad" id="about">
+      <ScrollReveal className="manifesto-section section-pad" offset={32} id="about">
         <div className="manifesto-aside">
           <span className="section-number">01</span>
           <span className="eyebrow"><span className="eyebrow-dot" /> What is Mehansh Platform</span>
@@ -52,7 +52,7 @@ export default function Home() {
         </div>
       </ScrollReveal>
 
-      <ScrollReveal className="services-section section-pad" id="services">
+      <ScrollReveal className="services-section section-pad" offset={24} id="services">
         <div className="services-heading">
           <div>
             <span className="eyebrow"><span className="eyebrow-dot" /> 02 / The platform</span>
@@ -61,7 +61,7 @@ export default function Home() {
           <p>Mehansh Platform brings hospitality, food, travel, and distribution into one founder-led ecosystem. Each vertical has its own rhythm and a clear place to begin.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
-          {["celebration", "hospitality", "rahgir", "distribution"].map((slug, index) => {
+          {["celebration", "hospitality", "rahgir", "distribution"].map((slug) => {
             const vertical = verticals.find(v => v.slug === slug)!;
             const VerticalIcon = vertical.icon;
             
@@ -69,7 +69,7 @@ export default function Home() {
             if (vertical.slug === "celebration") colSpanClass = "md:col-span-12";
 
             return (
-              <ScrollReveal delay={index * 0.08} className={`vertical-card ${colSpanClass} vertical-card-${vertical.accent}`} id={`vertical-${vertical.slug}`} key={vertical.slug}>
+              <div className={`vertical-card ${colSpanClass} vertical-card-${vertical.accent}`} id={`vertical-${vertical.slug}`} key={vertical.slug}>
                 <div className="vertical-card-topline">
                   <span className="card-index">{vertical.index}</span>
                   <VerticalIcon size={21} strokeWidth={1.25} />
@@ -114,13 +114,13 @@ export default function Home() {
                 <Link href={vertical.slug === "distribution" ? "/services/distribution" : `/services/${vertical.serviceSlugs[0]}`} className="vertical-footer-link">
                   Open vertical <ArrowUpRight size={14} />
                 </Link>
-              </ScrollReveal>
+              </div>
             );
           })}
         </div>
       </ScrollReveal>
 
-      <ScrollReveal className="owner-section section-pad" id="owner">
+      <ScrollReveal className="owner-section section-pad" offset={28} id="owner">
         <div className="owner-portrait">
           <div className="portrait-grid" />
           <img src="/assets/mehansh-mark-256.png" width="256" height="256" alt="Mehansh Platform hand-and-sprout mark" loading="lazy" decoding="async" />
@@ -138,7 +138,7 @@ export default function Home() {
         </div>
       </ScrollReveal>
 
-      <ScrollReveal className="contact-section section-pad" aria-label="Contact details" id="contact">
+      <ScrollReveal className="contact-section section-pad" offset={20} aria-label="Contact details" id="contact">
         <div className="contact-intro">
           <span className="eyebrow eyebrow-lime"><span className="eyebrow-dot" /> 04 / Contact</span>
           <h2>Good work starts<br /><em>with a direct line.</em></h2>
@@ -151,7 +151,7 @@ export default function Home() {
         </div>
       </ScrollReveal>
 
-      <ScrollReveal className="closing-section">
+      <ScrollReveal className="closing-section" offset={16}>
         <div className="closing-symbol"><Leaf size={28} strokeWidth={1} /></div>
         <span className="eyebrow eyebrow-lime"><span className="eyebrow-dot" /> Mehansh Platform</span>
         <h2>A place for Genuine Soul<br /><em>to achieve Genuine Dreams.</em></h2>
