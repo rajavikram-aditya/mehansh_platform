@@ -33,6 +33,10 @@ export type Service = {
   pathwayIntro?: string;
   pathway?: { index: string; title: string; text: string }[];
   brandCards?: BrandCard[];
+  gallery?: { src: string; alt: string }[];
+  reviews?: { author: string; role: "owner" | "customer"; quote: string }[];
+  instagramUrl?: string;
+  contactPhone?: string;
 };
 
 export type Vertical = {
@@ -104,6 +108,33 @@ export const services: Service[] = [
     icon: CakeSlice,
     image: "/assets/ber-editorial.jpg",
     imageAlt: "Editorial Goa dining table with cocktail and shared plates",
+    // Note: Temporary photography placeholders until official high-res gallery photos are provided
+    gallery: [
+      { src: "/assets/ber-editorial.jpg", alt: "Ber Goa dining space with coastal cocktail setup" },
+      { src: "/assets/beyond-silli-chilli.jpg", alt: "Freshly prepared fusion dishes and small plates" },
+      { src: "/assets/hotel-lonavilla.jpg", alt: "Ambient indoor dining area with warm lighting" },
+      { src: "/assets/mehansh-hero-anchor.jpg", alt: "Signature beverages and curated bar counter" },
+    ],
+    // Note: Sample feedback data to be replaced once official guest/owner reviews are collected
+    reviews: [
+      {
+        author: "Saurabh Anand",
+        role: "owner",
+        quote: "At Ber, we wanted to craft a cocktail and dining experience in Goa that honors classic Indian flavors while bringing a modern, soulful touch to mixology.",
+      },
+      {
+        author: "Ananya R.",
+        role: "customer",
+        quote: "The small plates and signature cocktails were phenomenal. You can feel the thought and warmth put into every dish and drink.",
+      },
+      {
+        author: "Vikram S.",
+        role: "customer",
+        quote: "A refreshing blend of authentic spices and contemporary dining. Easily one of the standout dining spots in Goa.",
+      },
+    ],
+    instagramUrl: undefined, // Set to string once official handle is live; undefined renders disabled "Coming Soon" state
+    contactPhone: "+917020391755", // Direct phone contact
   },
   {
     slug: "beyond-silli-chilli",

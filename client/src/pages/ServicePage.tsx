@@ -2,8 +2,11 @@
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useLayoutEffect } from "react";
 import { Link } from "wouter";
+import Gallery from "../components/Gallery";
+import ReviewsSection from "../components/ReviewsSection";
 import RouteMeta from "../components/RouteMeta";
 import ScrollReveal from "../components/ScrollReveal";
+import SocialContactSection from "../components/SocialContactSection";
 import { getService, orderedServices } from "../data/services";
 
 function accentClass(accent: string) {
@@ -31,7 +34,7 @@ export default function ServicePage({ slug }: { slug: string }) {
   const ServiceIcon = service.icon;
 
   return (
-    <div className={`service-page ${accentClass(service.accent)}`}>
+    <div className={`service-page service-page-${service.slug} ${accentClass(service.accent)}`}>
       <RouteMeta service={service} />
       <section className="service-hero section-pad">
         <div className="service-hero-copy">
@@ -135,6 +138,16 @@ export default function ServicePage({ slug }: { slug: string }) {
           </div>
         </ScrollReveal>
       )}
+
+      <Gallery items={service.gallery} />
+
+      <ReviewsSection reviews={service.reviews} />
+
+      <SocialContactSection
+        serviceTitle={service.title}
+        instagramUrl={service.instagramUrl}
+        contactPhone={service.contactPhone}
+      />
 
       <ScrollReveal className="service-cta section-pad" offset={16}>
         <div className="cta-mark"><ServiceIcon size={26} strokeWidth={1.25} /></div>
