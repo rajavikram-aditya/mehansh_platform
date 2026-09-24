@@ -106,14 +106,13 @@ export const services: Service[] = [
     ],
     accent: "olive",
     icon: CakeSlice,
-    image: "/assets/ber-editorial.jpg",
-    imageAlt: "Editorial Goa dining table with cocktail and shared plates",
-    // Note: Temporary photography placeholders until official high-res gallery photos are provided
+    image: "/assets/ber.png",
+    imageAlt: "Ber Goa — restaurant exterior and brand identity",
     gallery: [
-      { src: "/assets/ber-editorial.jpg", alt: "Ber Goa dining space with coastal cocktail setup" },
-      { src: "/assets/beyond-silli-chilli.jpg", alt: "Freshly prepared fusion dishes and small plates" },
-      { src: "/assets/hotel-lonavilla.jpg", alt: "Ambient indoor dining area with warm lighting" },
-      { src: "/assets/mehansh-hero-anchor.jpg", alt: "Signature beverages and curated bar counter" },
+      { src: "/assets/ber.png", alt: "Ber Goa — restaurant exterior and brand identity" },
+      { src: "/assets/ber-dining.png", alt: "Ber Goa — dining space and table setting" },
+      { src: "/assets/ber-goa.png", alt: "Ber Goa — coastal atmosphere and interiors" },
+      { src: "/assets/ber-bar.png", alt: "Ber Goa — bar counter with signature cocktails" },
     ],
     // Note: Sample feedback data to be replaced once official guest/owner reviews are collected
     reviews: [
